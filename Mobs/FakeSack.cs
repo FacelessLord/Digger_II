@@ -1,3 +1,4 @@
+using Digger.Architecture;
 using static Digger.Game;
 
 namespace Digger.Mobs
@@ -6,23 +7,25 @@ namespace Digger.Mobs
 	{
 		int FreeFall;
 		bool IsFalling;
+
 		public CreatureCommand Act(int x, int y)
 		{
-			var moving = new CreatureCommand { DeltaY = 0 };
-			if ( y + 1 < MapHeight && (Map[x, y + 1] == null
-			                           || (FreeFall > 0 && (Map[x, y + 1] is Player
-			                                                || Map[x, y + 1] is Wall
-			                                                || Map[x, y + 1] is Monster) || IsFalling)))
+			var moving = new CreatureCommand {DeltaY = 0};
+			if (y + 1 < MapHeight && (Map[x, y + 1] == null
+			                          || (FreeFall > 0 && (Map[x, y + 1] is Player
+			                                               || Map[x, y + 1] is Wall
+			                                               || Map[x, y + 1] is Monster) || IsFalling)))
 			{
 				moving.DeltaY++;
 				FreeFall++;
 				IsFalling = true;
 			}
+
 			if (FreeFall > 1 && !IsFalling)
 				moving.TransformTo = new Gold();
 			if (!IsFalling)
 				FreeFall = 0;
-			if (y + 1 < MapHeight && (Map[x, y + 1] is Terrain 
+			if (y + 1 < MapHeight && (Map[x, y + 1] is Terrain
 			                          || Map[x, y + 1] is Sack))
 				IsFalling = false;
 			else IsFalling = false;
@@ -42,6 +45,11 @@ namespace Digger.Mobs
 		public string GetImageFileName()
 		{
 			return "FakeSack.png";
+		}
+
+		public bool IsSolidObject()
+		{
+			return true;
 		}
 	}
 }

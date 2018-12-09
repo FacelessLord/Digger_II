@@ -1,3 +1,5 @@
+using Digger.Architecture;
+
 namespace Digger.Mobs
 {
 	class Terrain : ICreature
@@ -25,6 +27,11 @@ namespace Digger.Mobs
 		public string GetImageFileName()
 		{
 			return "Terrain.png";
+		}
+
+		public bool IsSolidObject()
+		{
+			return false;
 		}
 	}
 }

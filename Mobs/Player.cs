@@ -1,5 +1,6 @@
 using static Digger.Game;
 using System.Windows.Forms;
+using Digger.Architecture;
 
 namespace Digger.Mobs
 {
@@ -46,11 +47,7 @@ namespace Digger.Mobs
 				moving.DeltaX = 0;
 			if (y + moving.DeltaY >= MapHeight || y + moving.DeltaY < 0) //условия
 				moving.DeltaY = 0;
-			if (Map[x + moving.DeltaX, y + moving.DeltaY] is Sack
-			    || Map[x + moving.DeltaX, y + moving.DeltaY] is Key
-			    || Map[x + moving.DeltaX, y + moving.DeltaY] is Wall
-			    || Map[x + moving.DeltaX, y + moving.DeltaY] is FakeSack
-			    || Map[x + moving.DeltaX, y + moving.DeltaY] is Door)
+			if (Map[x + moving.DeltaX, y + moving.DeltaY] != null && Map[x + moving.DeltaX, y + moving.DeltaY].IsSolidObject())
 			{
 				moving.DeltaX = 0;
 				moving.DeltaY = 0;
@@ -61,6 +58,11 @@ namespace Digger.Mobs
 			locX = XLoc; //запись в поля Player
 			locY = YLoc;
 			return moving;
+		}
+
+		public bool IsSolidObject()
+		{
+			return false;
 		}
 
 		public bool DeadInConflict(ICreature conflictedObject)

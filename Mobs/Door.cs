@@ -1,3 +1,4 @@
+using Digger.Architecture;
 using static Digger.Game;
 
 namespace Digger.Mobs
@@ -15,6 +16,7 @@ namespace Digger.Mobs
 			{
 				Scores += 50;
 			}
+
 			return conflictedObject is Key;
 		}
 
@@ -27,6 +29,11 @@ namespace Digger.Mobs
 		{
 			//if (false) return "OpenDoor.png";
 			return "DoorClose.png";
+		}
+
+		public bool IsSolidObject()
+		{
+			return true;
 		}
 	}
 }

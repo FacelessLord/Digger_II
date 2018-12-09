@@ -1,10 +1,11 @@
-﻿namespace Digger
+﻿namespace Digger.Architecture
 {
     public interface ICreature
     {
+	    CreatureCommand Act(int x, int y);
         string GetImageFileName();
         int GetDrawingPriority();
-        CreatureCommand Act(int x, int y);
         bool DeadInConflict(ICreature conflictedObject);
+	    bool IsSolidObject();
     }
 }

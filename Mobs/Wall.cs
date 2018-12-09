@@ -1,10 +1,12 @@
+using Digger.Architecture;
+
 namespace Digger.Mobs
 {
 	public class Wall : ICreature
 	{
 		public CreatureCommand Act(int x, int y)
 		{
-			return new CreatureCommand { DeltaX = 0, DeltaY = 0 };
+			return new CreatureCommand {DeltaX = 0, DeltaY = 0};
 		}
 
 		public bool DeadInConflict(ICreature conflictedObject)
@@ -20,6 +22,11 @@ namespace Digger.Mobs
 		public string GetImageFileName()
 		{
 			return "Wall.png";
+		}
+
+		public bool IsSolidObject()
+		{
+			return true;
 		}
 	}
 }

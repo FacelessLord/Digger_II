@@ -1,3 +1,4 @@
+using Digger.Architecture;
 using static Digger.Game;
 
 namespace Digger.Mobs
@@ -27,6 +28,11 @@ namespace Digger.Mobs
 		public string GetImageFileName()
 		{
 			return "Gold.png";
+		}
+
+		public bool IsSolidObject()
+		{
+			return false;
 		}
 	}
 }

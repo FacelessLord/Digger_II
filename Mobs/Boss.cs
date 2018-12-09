@@ -1,5 +1,6 @@
 using static Digger.Game;
 using System;
+using Digger.Architecture;
 
 namespace Digger.Mobs
 {
@@ -32,6 +33,11 @@ namespace Digger.Mobs
 		public bool DeadInConflict(ICreature conflictedObject)
 		{
 			return true;
+		}
+
+		public bool IsSolidObject()
+		{
+			return false;
 		}
 
 		public int GetDrawingPriority()
