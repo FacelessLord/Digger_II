@@ -16,7 +16,6 @@
         <e p="Program.cs" t="Include" />
       </e>
       <e p="Digger.csproj" t="IncludeRecursive" />
-      <e p="DiggerTask.cs" t="Include" />
       <e p="Game.cs" t="Include" />
       <e p="Images" t="Include">
         <e p="Boss.png" t="Include" />
@@ -30,6 +29,18 @@
         <e p="Terrain.png" t="Include" />
         <e p="Wall.png" t="Include" />
         <e p="tenor.gif" t="Include" />
+      </e>
+      <e p="Mobs" t="Include">
+        <e p="Boss.cs" t="Include" />
+        <e p="Door.cs" t="Include" />
+        <e p="FakeSack.cs" t="Include" />
+        <e p="Gold.cs" t="Include" />
+        <e p="Key.cs" t="Include" />
+        <e p="Monster.cs" t="Include" />
+        <e p="Player.cs" t="Include" />
+        <e p="Sack.cs" t="Include" />
+        <e p="Terrain.cs" t="Include" />
+        <e p="Wall.cs" t="Include" />
       </e>
       <e p="Properties" t="Include">
         <e p="AssemblyInfo.cs" t="Include" />

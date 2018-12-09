@@ -54,13 +54,22 @@
     <Compile Include="Architecture\GameState.cs" />
     <Compile Include="Architecture\CreatureMapCreator.cs" />
     <Compile Include="Game.cs" />
-    <Compile Include="DiggerTask.cs" />
     <Compile Include="Architecture\ICreature.cs" />
     <Compile Include="Architecture\CreatureAnimation.cs" />
     <Compile Include="Architecture\DiggerWindow.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Architecture\Program.cs" />
+    <Compile Include="Mobs\Boss.cs" />
+    <Compile Include="Mobs\Door.cs" />
+    <Compile Include="Mobs\FakeSack.cs" />
+    <Compile Include="Mobs\Gold.cs" />
+    <Compile Include="Mobs\Key.cs" />
+    <Compile Include="Mobs\Monster.cs" />
+    <Compile Include="Mobs\Player.cs" />
+    <Compile Include="Mobs\Sack.cs" />
+    <Compile Include="Mobs\Terrain.cs" />
+    <Compile Include="Mobs\Wall.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -89,22 +98,22 @@
     <None Include="Images\Digger.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-	    <None Include="Images\tenor.gif">
+    <None Include="Images\tenor.gif">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-	<None Include="Images\Key.png">
+    <None Include="Images\Key.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-		<None Include="Images\Wall.png">
+    <None Include="Images\Wall.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Images\DoorClose.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-	<None Include="Images\Boss.png">
+    <None Include="Images\Boss.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-		<None Include="Images\FakeSack.png">
+    <None Include="Images\FakeSack.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Images\Gold.png">
@@ -120,7 +129,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
