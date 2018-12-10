@@ -22,7 +22,7 @@ namespace Digger.Mobs
 
 		public int GetDrawingPriority()
 		{
-			return 5;
+			return 0;
 		}
 
 		public string GetImageFileName()

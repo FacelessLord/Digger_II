@@ -64,8 +64,10 @@ namespace Digger
                     return CreateObjectByTypeName("Key");
                 case 'D':
                     return CreateObjectByTypeName("Door");
-                case 'F':
+                case 's':
                     return CreateObjectByTypeName("FakeSack");
+                case 'F':
+                    return CreateObjectByTypeName("FireBlock");
                 case 'B':
                     return CreateObjectByTypeName("Boss");
                 case ' ':

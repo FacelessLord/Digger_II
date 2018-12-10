@@ -23,6 +23,8 @@
         <e p="Digger.png" t="Include" />
         <e p="DoorClose.png" t="Include" />
         <e p="FakeSack.png" t="Include" />
+        <e p="Fireball.png" t="Include" />
+        <e p="Fireblock.png" t="Include" />
         <e p="Gold.png" t="Include" />
         <e p="Key.png" t="Include" />
         <e p="Monster.png" t="Include" />
@@ -35,6 +37,7 @@
         <e p="Boss.cs" t="Include" />
         <e p="Door.cs" t="Include" />
         <e p="FakeSack.cs" t="Include" />
+        <e p="FireBlock.cs" t="Include" />
         <e p="Gold.cs" t="Include" />
         <e p="Key.cs" t="Include" />
         <e p="Monster.cs" t="Include" />

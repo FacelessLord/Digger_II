@@ -12,7 +12,7 @@ namespace Digger.Mobs
 
 		public int GetDrawingPriority()
 		{
-			return 9;
+			return 0;
 		}
 
 		public string GetImageFileName()
@@ -69,7 +69,7 @@ namespace Digger.Mobs
 
 		public bool DestroyedInConflict(IObject conflictedObject)
 		{
-			bool result = conflictedObject is Sack || conflictedObject is Monster || conflictedObject is FakeSack;
+			bool result = conflictedObject is Sack || conflictedObject is Monster || conflictedObject is FakeSack || conflictedObject is FireBlock;
 			if (result) Game._isOver = true; //game is over 
 			return result;
 		}
