@@ -12,7 +12,8 @@ namespace Digger.Mobs
 			if ( y + 1 < MapHeight && (Map[x, y + 1] == null
 			                           || (FreeFall > 0 && (Map[x, y + 1] is Player
 			                                                || Map[x, y + 1] is Wall
-			                                                || Map[x, y + 1] is Monster) || IsFalling)))
+                                                            || Map[x, y + 1] is Boss
+                                                            || Map[x, y + 1] is Monster) || IsFalling)))
 			{
 				moving.DeltaY++;
 				FreeFall++;
