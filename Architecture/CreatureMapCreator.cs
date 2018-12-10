@@ -8,28 +8,28 @@ namespace Digger
 {
     public static class CreatureMapCreator
     {
-        private static readonly Dictionary<string, Func<ICreature>> factory = new Dictionary<string, Func<ICreature>>();
+        private static readonly Dictionary<string, Func<IObject>> Factory = new Dictionary<string, Func<IObject>>();
 
-        public static ICreature[,] CreateMap(string map, string separator = "\r\n")
+        public static IObject[,] CreateMap(string map, string separator = "\r\n")
         {
             var rows = map.Split(new[] {separator}, StringSplitOptions.RemoveEmptyEntries);
             if (rows.Select(z => z.Length).Distinct().Count() != 1)
                 throw new Exception($"Wrong test map '{map}'");
-            var result = new ICreature[rows[0].Length, rows.Length];
+            var result = new IObject[rows[0].Length, rows.Length];
             for (var x = 0; x < rows[0].Length; x++)
             for (var y = 0; y < rows.Length; y++)
                 result[x, y] = CreateCreatureBySymbol(rows[y][x]);
             return result;
         }
 
-        private static ICreature CreateCreatureByTypeName(string name)
+        private static IObject CreateObjectByTypeName(string name)
         {
             // Это использование механизма рефлексии. 
             // Ему посвящена одна из последних лекций второй части курса Основы программирования
             // В обычном коде можно было обойтись без нее, но нам нужно было написать такой код,
             // который работал бы, даже если вы ещё не создали класс Monster или Gold. 
             // Просто написать new Gold() мы не могли, потому что это не скомпилировалось бы пока вы не создадите класс Gold.
-            if (!factory.ContainsKey(name))
+            if (!Factory.ContainsKey(name))
             {
                 var type = Assembly
                     .GetExecutingAssembly()
@@ -37,37 +37,37 @@ namespace Digger
                     .FirstOrDefault(z => z.Name == name);
                 if (type == null)
                     throw new Exception($"Can't find type '{name}'");
-                factory[name] = () => (ICreature) Activator.CreateInstance(type);
+                Factory[name] = () => (IObject) Activator.CreateInstance(type);
             }
 
-            return factory[name]();
+            return Factory[name]();
         }
 
 
-        private static ICreature CreateCreatureBySymbol(char c)
+        private static IObject CreateCreatureBySymbol(char c)
         {
             switch (c)
             {
                 case 'P':
-                    return CreateCreatureByTypeName("Player");
+                    return CreateObjectByTypeName("Player");
                 case 'T':
-                    return CreateCreatureByTypeName("Terrain");
+                    return CreateObjectByTypeName("Terrain");
                 case 'G':
-                    return CreateCreatureByTypeName("Gold");
+                    return CreateObjectByTypeName("Gold");
                 case 'S':
-                    return CreateCreatureByTypeName("Sack");
+                    return CreateObjectByTypeName("Sack");
                 case 'M':
-                    return CreateCreatureByTypeName("Monster");
+                    return CreateObjectByTypeName("Monster");
                 case 'W':
-                    return CreateCreatureByTypeName("Wall");
+                    return CreateObjectByTypeName("Wall");
                 case 'K':
-                    return CreateCreatureByTypeName("Key");
+                    return CreateObjectByTypeName("Key");
                 case 'D':
-                    return CreateCreatureByTypeName("Door");
+                    return CreateObjectByTypeName("Door");
                 case 'F':
-                    return CreateCreatureByTypeName("FakeSack");
+                    return CreateObjectByTypeName("FakeSack");
                 case 'B':
-                    return CreateCreatureByTypeName("Boss");
+                    return CreateObjectByTypeName("Boss");
                 case ' ':
                     return null;
                 default:

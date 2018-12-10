@@ -4,39 +4,47 @@ using Digger.Architecture;
 
 namespace Digger.Mobs
 {
-	public class Boss : ICreature
+	public class Boss : ILiving
 	{
-		int locationX;
-		int locationY;
-		int time = 0;
-        bool IsAlive = true;
-		System.Windows.Forms.Timer timer = new System.Windows.Forms.Timer() ;
+		int _locationX;
+		int _locationY;
+		int _time = 0;
+		private int _blocksLeft = 0;
+		
+        bool _isAlive = true;
+		
+		System.Windows.Forms.Timer _timer = new System.Windows.Forms.Timer() ;
 
 
-		public CreatureCommand Act(int x, int y)
+		public CreatureCommand Update(int x, int y)
 		{
 
-			timer.Interval = 4;
-			timer.Tick +=SpawnMob;
+			_timer.Interval = 4;
+			_timer.Tick +=SpawnMob;
             
 			var moving = new CreatureCommand { };
-			locationX = x + moving.DeltaX;
-			locationY = y + moving.DeltaY;
-			if (time % 10 == 0 && Map[x, y + 1] == null && locX == x && locationY < locY && IsAlive)
+			_locationX = x + moving._deltaX;
+			_locationY = y + moving._deltaY;
+			if (_time % 10 == 0 && _map[x, y + 1] == null && _locX == x && _locationY < _locY && _isAlive)
 			{
 
-				Map[locationX, locationY + 1] = new FakeSack();
-				timer.Start();
+				_map[_locationX, _locationY + 1] = new FakeSack();
+				_timer.Start();
 			}
 			return moving;
 		}
 
-		public bool DeadInConflict(ICreature conflictedObject)
+		public bool DestroyedInConflict(IObject conflictedObject)
 		{
-            IsAlive = conflictedObject is Key || conflictedObject is Player || 
+            _isAlive = conflictedObject is Key || conflictedObject is Player || 
                      conflictedObject is Sack || conflictedObject is FakeSack;
 
-            return IsAlive;
+            return _isAlive;
+		}
+
+		public bool CanCreateBlocks(int x, int y)
+		{
+			return _blocksLeft > 0;
 		}
 
 		public bool IsSolidObject()
@@ -50,9 +58,9 @@ namespace Digger.Mobs
 		}
 		private void SpawnMob(object sender, EventArgs args)
 		{
-			time++;
-			if (locX == locationX && locationY > locY && IsAlive)
-				Map[locationX, locationY + 1] = new FakeSack();
+			_time++;
+			if (_locX == _locationX && _locationY > _locY && _isAlive)
+				_map[_locationX, _locationY + 1] = new FakeSack();
 		}
 		public string GetImageFileName()
 		{

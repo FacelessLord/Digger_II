@@ -53,8 +53,9 @@
     <Compile Include="Architecture\CreatureCommand.cs" />
     <Compile Include="Architecture\GameState.cs" />
     <Compile Include="Architecture\CreatureMapCreator.cs" />
+    <Compile Include="Architecture\IObject.cs" />
     <Compile Include="Game.cs" />
-    <Compile Include="Architecture\ICreature.cs" />
+    <Compile Include="Architecture\ILiving.cs" />
     <Compile Include="Architecture\CreatureAnimation.cs" />
     <Compile Include="Architecture\DiggerWindow.cs">
       <SubType>Form</SubType>

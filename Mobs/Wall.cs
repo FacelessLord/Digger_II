@@ -2,14 +2,14 @@ using Digger.Architecture;
 
 namespace Digger.Mobs
 {
-	public class Wall : ICreature
+	public class Wall : IObject
 	{
-		public CreatureCommand Act(int x, int y)
+		public CreatureCommand Update(int x, int y)
 		{
-			return new CreatureCommand {DeltaX = 0, DeltaY = 0};
+			return new CreatureCommand {_deltaX = 0, _deltaY = 0};
 		}
 
-		public bool DeadInConflict(ICreature conflictedObject)
+		public bool DestroyedInConflict(IObject conflictedObject)
 		{
 			return conflictedObject is Door;
 		}

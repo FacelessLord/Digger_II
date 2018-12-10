@@ -2,19 +2,19 @@ using Digger.Architecture;
 
 namespace Digger.Mobs
 {
-	class Terrain : ICreature
+	class Terrain : IObject
 	{
-		public CreatureCommand Act(int x, int y)
+		public CreatureCommand Update(int x, int y)
 		{
 			return new CreatureCommand()
 			{
-				DeltaX = 0,
-				DeltaY = 0,
-				TransformTo = this
+				_deltaX = 0,
+				_deltaY = 0,
+				_transformTo = this
 			};
 		}
 
-		public bool DeadInConflict(ICreature conflictedObject)
+		public bool DestroyedInConflict(IObject conflictedObject)
 		{
 			return true;
 		}

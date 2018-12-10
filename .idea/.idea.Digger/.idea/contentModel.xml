@@ -12,7 +12,8 @@
         <e p="CreatureMapCreator.cs" t="Include" />
         <e p="DiggerWindow.cs" t="Include" />
         <e p="GameState.cs" t="Include" />
-        <e p="ICreature.cs" t="Include" />
+        <e p="ILiving.cs" t="Include" />
+        <e p="IObject.cs" t="Include" />
         <e p="Program.cs" t="Include" />
       </e>
       <e p="Digger.csproj" t="IncludeRecursive" />

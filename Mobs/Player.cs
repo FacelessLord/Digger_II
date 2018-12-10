@@ -4,10 +4,11 @@ using Digger.Architecture;
 
 namespace Digger.Mobs
 {
-	class Player : ICreature
+	class Player : ILiving
 	{
-		public int XLoc;
-		public int YLoc;
+		public int _xLoc;
+		public int _yLoc;
+		private int _blocksLeft = 0;
 
 		public int GetDrawingPriority()
 		{
@@ -19,44 +20,45 @@ namespace Digger.Mobs
 			return "Digger.png";
 		}
 
-		public CreatureCommand Act(int x, int y)
+		public CreatureCommand Update(int x, int y)
 		{
 
 			var moving = new CreatureCommand();
-			switch (KeyPressed)
+			switch (_keyPressed)
 			{
 				case Keys.Up:
 					if (y >= 0)
-						moving.DeltaY--;
+						moving._deltaY--;
 					break;
 				case Keys.Down:
 					if (y <= MapHeight)
-						moving.DeltaY++;
+						moving._deltaY++;
 					break;
 				case Keys.Right:
 					if (x <= MapWidth)
-						moving.DeltaX++;
+						moving._deltaX++;
 					break;
 				case Keys.Left:
 					if (x >= 0)
-						moving.DeltaX--; //движение и последующая проверка
+						moving._deltaX--; //движение и последующая проверка
 					break;
 			}
 
-			if (x + moving.DeltaX >= MapWidth || x + moving.DeltaX < 0)
-				moving.DeltaX = 0;
-			if (y + moving.DeltaY >= MapHeight || y + moving.DeltaY < 0) //условия
-				moving.DeltaY = 0;
-			if (Map[x + moving.DeltaX, y + moving.DeltaY] != null && Map[x + moving.DeltaX, y + moving.DeltaY].IsSolidObject())
+			if (x + moving._deltaX >= MapWidth || x + moving._deltaX < 0)
+				moving._deltaX = 0;
+			if (y + moving._deltaY >= MapHeight || y + moving._deltaY < 0) //условия
+				moving._deltaY = 0;
+			if (_map[x + moving._deltaX, y + moving._deltaY] != null &&
+			    _map[x + moving._deltaX, y + moving._deltaY].IsSolidObject())
 			{
-				moving.DeltaX = 0;
-				moving.DeltaY = 0;
+				moving._deltaX = 0;
+				moving._deltaY = 0;
 			}
 
-			XLoc = x + moving.DeltaX;
-			YLoc = y + moving.DeltaY;
-			locX = XLoc; //запись в поля Player
-			locY = YLoc;
+			_xLoc = x + moving._deltaX;
+			_yLoc = y + moving._deltaY;
+			_locX = _xLoc; //запись в поля Player
+			_locY = _yLoc;
 			return moving;
 		}
 
@@ -65,11 +67,17 @@ namespace Digger.Mobs
 			return false;
 		}
 
-		public bool DeadInConflict(ICreature conflictedObject)
+		public bool DestroyedInConflict(IObject conflictedObject)
 		{
 			bool result = conflictedObject is Sack || conflictedObject is Monster || conflictedObject is FakeSack;
-			if (result) Game.IsOver = true; //game is over 
+			if (result) Game._isOver = true; //game is over 
 			return result;
+		}
+
+
+		public bool CanCreateBlocks(int x, int y)
+		{
+			return _blocksLeft > 0;
 		}
 	}
 }

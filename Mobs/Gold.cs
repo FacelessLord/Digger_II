@@ -1,22 +1,42 @@
 using Digger.Architecture;
 using static Digger.Game;
+using Digger.Architecture;
+using static Digger.Game;
 
 namespace Digger.Mobs
 {
-	public class Gold : ICreature
+	public class Gold : IObject
 	{
-		public CreatureCommand Act(int x, int y)
-		{
-			return new CreatureCommand();
-		}
+		public bool _isFalling;
 
-		public bool DeadInConflict(ICreature conflictedObject)
+		public CreatureCommand Update(int x, int y)
+		{
+			var moving = new CreatureCommand { };
+			if (y + 1 < MapHeight && (_map[x, y + 1] == null
+			                          || (_map[x, y + 1] is Player
+			                                               || _map[x, y + 1] is Monster) || _isFalling))
+			{
+				moving._deltaY++;
+				_isFalling = true;
+			}
+
+			if (y + 1 == MapHeight && _map[x, 0] == null && _isFalling)
+				moving._deltaY--;
+			if (y + 1 < MapHeight && (_map[x, y + 1] is Terrain || _map[x, y + 1] is Sack)|| _map[x, y + 1] is Gold)
+				_isFalling = false;
+			else _isFalling = false;
+
+			return moving;
+		}
+		
+
+		public bool DestroyedInConflict(IObject conflictedObject)
 		{
 			if (conflictedObject is Player)
-				if (time < 3600) //...
-					Scores += 20;
+				if (_time < 3600) //...
+					_scores += 20;
 				else
-					Scores += 10;
+					_scores += 10;
 			return true;
 		}
 

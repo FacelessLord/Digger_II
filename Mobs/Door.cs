@@ -3,18 +3,18 @@ using static Digger.Game;
 
 namespace Digger.Mobs
 {
-	public class Door : ICreature
+	public class Door : IObject
 	{
-		public CreatureCommand Act(int x, int y)
+		public CreatureCommand Update(int x, int y)
 		{
 			return new CreatureCommand { };
 		}
 
-		public bool DeadInConflict(ICreature conflictedObject)
+		public bool DestroyedInConflict(IObject conflictedObject)
 		{
 			if (conflictedObject is Key)
 			{
-				Scores += 50;
+				_scores += 50;
 			}
 
 			return conflictedObject is Key;

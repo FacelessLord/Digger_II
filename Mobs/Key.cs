@@ -4,60 +4,57 @@ using Digger.Architecture;
 
 namespace Digger.Mobs
 {
-    public class Key : ICreature
+    public class Key : IObject
     {
-        public int XLoc;
-        public int YLoc;
+        public int _xLoc;
+        public int _yLoc;
 
-        public CreatureCommand Act(int x, int y)
+        public CreatureCommand Update(int x, int y)
         {
-
-
             var moving = new CreatureCommand();
 
-
-            if (Map[x + 1, y] is Player || Map[x - 1, y] is Player ||
-                Map[x, y + 1] is Player || Map[x, y - 1] is Player)
-                switch (KeyPressed)
+            if (_map[x + 1, y] is Player || _map[x - 1, y] is Player ||
+                _map[x, y + 1] is Player || _map[x, y - 1] is Player)
+                switch (_keyPressed)
                 {
                     case Keys.Up:
                         if (y >= 0)
-                            moving.DeltaY--;
+                            moving._deltaY--;
                         break;
                     case Keys.Down:
                         if (y <= MapHeight)
-                            moving.DeltaY++;
+                            moving._deltaY++;
                         break;
                     case Keys.Right:
                         if (x <= MapWidth)
-                            moving.DeltaX++;
+                            moving._deltaX++;
                         break;
                     case Keys.Left:
                         if (x >= 0)
-                            moving.DeltaX--;
+                            moving._deltaX--;
                         break;
                 }
-            if (x + moving.DeltaX >= MapWidth || x + moving.DeltaX < 0)
-                moving.DeltaX = 0;
-            if (y + moving.DeltaY >= MapHeight || y + moving.DeltaY < 0)
-                moving.DeltaY = 0;
-            if (Map[x + moving.DeltaX, y + moving.DeltaY] is Sack
-                || Map[x + moving.DeltaX, y + moving.DeltaY] is Key
-                || Map[x + moving.DeltaX, y + moving.DeltaY] is Wall
-                || Map[x + moving.DeltaX, y + moving.DeltaY] is Monster
-                || Map[x + moving.DeltaX, y + moving.DeltaY] is Player)
+            if (x + moving._deltaX >= MapWidth || x + moving._deltaX < 0)
+                moving._deltaX = 0;
+            if (y + moving._deltaY >= MapHeight || y + moving._deltaY < 0)
+                moving._deltaY = 0;
+            if (_map[x + moving._deltaX, y + moving._deltaY] is Sack
+                || _map[x + moving._deltaX, y + moving._deltaY] is Key
+                || _map[x + moving._deltaX, y + moving._deltaY] is Wall
+                || _map[x + moving._deltaX, y + moving._deltaY] is Monster
+                || _map[x + moving._deltaX, y + moving._deltaY] is Player)
             {
-                moving.DeltaX = 0;
-                moving.DeltaY = 0;
+                moving._deltaX = 0;
+                moving._deltaY = 0;
             }
 
-            XLoc = x + moving.DeltaX;
-            YLoc = y + moving.DeltaY;
+            _xLoc = x + moving._deltaX;
+            _yLoc = y + moving._deltaY;
 
             return moving;
         }
 
-        public bool DeadInConflict(ICreature conflictedObject)
+        public bool DestroyedInConflict(IObject conflictedObject)
         {
             return conflictedObject is Door;
         }

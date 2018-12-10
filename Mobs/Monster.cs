@@ -3,36 +3,39 @@ using static Digger.Game;
 
 namespace Digger.Mobs
 {
-	public class Monster : ICreature
+	public class Monster : ILiving
 	{
-		string way = "left"; // вектор движения моба, нужно создать специальный класс вектора для "умного" движения мобов
-		public CreatureCommand Act(int x, int y)
+		string _way = "left"; // вектор движения моба, нужно создать специальный класс вектора для "умного" движения мобов
+
+		private int _blocksLeft = 0;
+		
+		public CreatureCommand Update(int x, int y)
 		{
-			var moving = new CreatureCommand { DeltaY = 0 };
-			if (time % 6 == 0)
+			var moving = new CreatureCommand { _deltaY = 0 };
+			if (_time % 3 == 0)
 			{
-				if ((Map[x + 1, y] == null || Map[x + 1, y] is Player) && way == "left")
+				if ((_map[x + 1, y] == null || _map[x + 1, y] is Player) && _way == "left")
 				{
-					moving.DeltaX++;
-					way = "left";
+					moving._deltaX++;
+					_way = "left";
                     
 				}
-				else way = "right"; // - заменить
+				else _way = "right"; // - заменить
                 
-				if ((Map[x - 1, y] == null || Map[x - 1, y] is Player) && way == "right")
+				if ((_map[x - 1, y] == null || _map[x - 1, y] is Player) && _way == "right")
 				{
-					moving.DeltaX--;
-					way = "right";
+					moving._deltaX--;
+					_way = "right";
 				}
-				else way = "left"; // - заменить
+				else _way = "left"; // - заменить
 
-				if (Map[x + moving.DeltaX, y + moving.DeltaY] is Monster ||
-				    (Map[x + moving.DeltaX, y] != null
-				     && !(Map[x + moving.DeltaX, y + moving.DeltaY] is Gold)
-				     && !(Map[x + moving.DeltaX, y + moving.DeltaY] is Monster)
-				     && !(Map[x + moving.DeltaX, y + moving.DeltaY] is Player)))
+				if (_map[x + moving._deltaX, y + moving._deltaY] is Monster ||
+				    (_map[x + moving._deltaX, y] != null
+				     && !(_map[x + moving._deltaX, y + moving._deltaY] is Gold)
+				     && !(_map[x + moving._deltaX, y + moving._deltaY] is Monster)
+				     && !(_map[x + moving._deltaX, y + moving._deltaY] is Player)))
 				{
-					moving.DeltaX = 0;
+					moving._deltaX = 0;
 				}
                 
 			}
@@ -40,7 +43,7 @@ namespace Digger.Mobs
 			return moving;
 		}
 
-		public bool DeadInConflict(ICreature conflictedObject)
+		public bool DestroyedInConflict(IObject conflictedObject)
 		{ 
 			return conflictedObject is Sack || conflictedObject is Monster || conflictedObject is Sack;
 		}
@@ -58,6 +61,12 @@ namespace Digger.Mobs
 		public bool IsSolidObject()
 		{
 			return false;
+		}
+		
+		
+		public bool CanCreateBlocks(int x, int y)
+		{
+			return _blocksLeft > 0;
 		}
 	}
 }

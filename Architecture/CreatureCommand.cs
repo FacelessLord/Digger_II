@@ -4,9 +4,9 @@ namespace Digger
 {
     public class CreatureCommand
     {
-        public int DeltaX;
-        public int DeltaY;
-        public ICreature TransformTo;
-        public ICreature Create;
+        public int _deltaX;
+        public int _deltaY;
+        public IObject _transformTo;
+        public IObject _create;
     }
 }

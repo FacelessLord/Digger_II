@@ -9,33 +9,33 @@ namespace Digger
     public class GameState
     {
         public const int ElementSize = 32;
-        public List<CreatureAnimation> Animations = new List<CreatureAnimation>();
+        public List<CreatureAnimation> _animations = new List<CreatureAnimation>();
 
         public void BeginAct()
         {
-            Animations.Clear();
+            _animations.Clear();
             for (var x = 0; x < Game.MapWidth; x++)
             for (var y = 0; y < Game.MapHeight; y++)
             {
-                var creature = Game.Map[x, y];
+                var creature = Game._map[x, y];
                 if (creature == null) continue;
-                var command = creature.Act(x, y);
+                var command = creature.Update(x, y);
 
-                if (x + command.DeltaX < 0 || x + command.DeltaX >= Game.MapWidth || y + command.DeltaY < 0 ||
-                    y + command.DeltaY >= Game.MapHeight)
+                if (x + command._deltaX < 0 || x + command._deltaX >= Game.MapWidth || y + command._deltaY < 0 ||
+                    y + command._deltaY >= Game.MapHeight)
                     throw new Exception($"The object {creature.GetType()} falls out of the game field");
 
-                Animations.Add(
+                _animations.Add(
                     new CreatureAnimation
                     {
-                        Command = command,
-                        Creature = creature,
-                        Location = new Point(x * ElementSize, y * ElementSize),
-                        TargetLogicalLocation = new Point(x + command.DeltaX, y + command.DeltaY)
+                        _command = command,
+                        _creature = creature,
+                        _location = new Point(x * ElementSize, y * ElementSize),
+                        _targetLogicalLocation = new Point(x + command._deltaX, y + command._deltaY)
                     });
             }
 
-            Animations = Animations.OrderByDescending(z => z.Creature.GetDrawingPriority()).ToList();
+            _animations = _animations.OrderByDescending(z => z._creature.GetDrawingPriority()).ToList();
         }
 
         public void EndAct()
@@ -43,16 +43,16 @@ namespace Digger
             var creaturesPerLocation = GetCandidatesPerLocation();
             for (var x = 0; x < Game.MapWidth; x++)
             for (var y = 0; y < Game.MapHeight; y++)
-                Game.Map[x, y] = SelectWinnerCandidatePerLocation(creaturesPerLocation, x, y);
+                Game._map[x, y] = SelectWinnerCandidatePerLocation(creaturesPerLocation, x, y);
         }
 
-        private static ICreature SelectWinnerCandidatePerLocation(List<ICreature>[,] creatures, int x, int y)
+        private static IObject SelectWinnerCandidatePerLocation(List<IObject>[,] creatures, int x, int y)
         {
             var candidates = creatures[x, y];
             var aliveCandidates = candidates.ToList();
             foreach (var candidate in candidates)
             foreach (var rival in candidates)
-                if (rival != candidate && candidate.DeadInConflict(rival))
+                if (rival != candidate && candidate.DestroyedInConflict(rival))
                     aliveCandidates.Remove(candidate);
             if (aliveCandidates.Count > 1)
                 throw new Exception(
@@ -61,17 +61,17 @@ namespace Digger
             return aliveCandidates.FirstOrDefault();
         }
 
-        private List<ICreature>[,] GetCandidatesPerLocation()
+        private List<IObject>[,] GetCandidatesPerLocation()
         {
-            var creatures = new List<ICreature>[Game.MapWidth, Game.MapHeight];
+            var creatures = new List<IObject>[Game.MapWidth, Game.MapHeight];
             for (var x = 0; x < Game.MapWidth; x++)
             for (var y = 0; y < Game.MapHeight; y++)
-                creatures[x, y] = new List<ICreature>();
-            foreach (var e in Animations)
+                creatures[x, y] = new List<IObject>();
+            foreach (var e in _animations)
             {
-                var x = e.TargetLogicalLocation.X;
-                var y = e.TargetLogicalLocation.Y;
-                var nextCreature = e.Command.TransformTo ?? e.Creature;
+                var x = e._targetLogicalLocation.X;
+                var y = e._targetLogicalLocation.Y;
+                var nextCreature = e._command._transformTo ?? e._creature;
                 creatures[x, y].Add(nextCreature);
             }
 

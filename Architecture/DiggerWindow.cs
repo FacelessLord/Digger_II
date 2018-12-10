@@ -9,15 +9,15 @@ namespace Digger
 {
     public class DiggerWindow : Form
     {
-        private readonly Dictionary<string, Bitmap> bitmaps = new Dictionary<string, Bitmap>();
-        private readonly GameState gameState;
-        private readonly HashSet<Keys> pressedKeys = new HashSet<Keys>();
-        private int tickCount;
+        private readonly Dictionary<string, Bitmap> _bitmaps = new Dictionary<string, Bitmap>();
+        private readonly GameState _gameState;
+        private readonly HashSet<Keys> _pressedKeys = new HashSet<Keys>();
+        private int _tickCount;
 
         
         public DiggerWindow(DirectoryInfo imagesDirectory = null)
         {
-            gameState = new GameState();
+            _gameState = new GameState();
             ClientSize = new Size(
                 GameState.ElementSize * Game.MapWidth,
                 GameState.ElementSize * Game.MapHeight + GameState.ElementSize);
@@ -29,7 +29,7 @@ namespace Digger
                 if (e.ToString() == "*.gif") // я пытался ("отрисовка" анимаций)
                     ImageAnimator.Animate(Image.FromFile(e.FullName), OnFrameChanged);
                 else
-                    bitmaps[e.Name] = (Bitmap)Image.FromFile(e.FullName);
+                    _bitmaps[e.Name] = (Bitmap)Image.FromFile(e.FullName);
             }
             var timer = new Timer();
             var timer1 = new Timer();
@@ -55,14 +55,14 @@ namespace Digger
 
         protected override void OnKeyDown(KeyEventArgs e)
         {
-            pressedKeys.Add(e.KeyCode);
-            Game.KeyPressed = e.KeyCode;
+            _pressedKeys.Add(e.KeyCode);
+            Game._keyPressed = e.KeyCode;
         }
 
         protected override void OnKeyUp(KeyEventArgs e)
         {
-            pressedKeys.Remove(e.KeyCode);
-            Game.KeyPressed = pressedKeys.Any() ? pressedKeys.Min() : Keys.None;
+            _pressedKeys.Remove(e.KeyCode);
+            Game._keyPressed = _pressedKeys.Any() ? _pressedKeys.Min() : Keys.None;
         }
 
         protected override void OnPaint(PaintEventArgs e)
@@ -71,35 +71,35 @@ namespace Digger
             e.Graphics.FillRectangle(
                 Brushes.Black, 0, 0, GameState.ElementSize * Game.MapWidth,
                 GameState.ElementSize * Game.MapHeight);
-            foreach (var a in gameState.Animations)
-                e.Graphics.DrawImage(bitmaps[a.Creature.GetImageFileName()], a.Location);
+            foreach (var a in _gameState._animations)
+                e.Graphics.DrawImage(_bitmaps[a._creature.GetImageFileName()], a._location);
             e.Graphics.ResetTransform();
-            e.Graphics.DrawString("Score " + Game.Scores.ToString(), new Font("Arial", 16), Brushes.Blue, 0, 0);
-            e.Graphics.DrawString("Time " + Game.GameTime, new Font("Arial", 16), Brushes.Red, 150, 0);
-            if (Game.IsOver)
+            e.Graphics.DrawString("Score " + Game._scores.ToString(), new Font("Arial", 16), Brushes.Blue, 0, 0);
+            e.Graphics.DrawString("Time " + Game._gameTime, new Font("Arial", 16), Brushes.Red, 150, 0);
+            if (Game._isOver)
                 e.Graphics.DrawString("Game Over", new Font("Georgia", 32), Brushes.SteelBlue, Width / 2 - 125, Height / 2 - 70);
         }
 
         private void TimerTick(object sender, EventArgs args)
         {
-            if (tickCount == 0) gameState.BeginAct(); 
-            foreach (var e in gameState.Animations)
-                e.Location = new Point(e.Location.X + 4 * e.Command.DeltaX, e.Location.Y + 4 * e.Command.DeltaY);
-            if (tickCount == 7)
-                gameState.EndAct();
-            tickCount++;
-            if (tickCount == 8) tickCount = 0;
+            if (_tickCount == 0) _gameState.BeginAct(); 
+            foreach (var e in _gameState._animations)
+                e._location = new Point(e._location.X + 4 * e._command._deltaX, e._location.Y + 4 * e._command._deltaY);
+            if (_tickCount == 7)
+                _gameState.EndAct();
+            _tickCount++;
+            if (_tickCount == 8) _tickCount = 0;
             Invalidate();
         }
 
         private void GetTime(object sender, EventArgs args)
         {
-            if (!Game.IsOver)
+            if (!Game._isOver)
             {
-                Game.time++;
-                Game.GameTime = String.Format("{0:d2}:{1:d2}:{2:d2}", Game.time / 3600, (Game.time / 60) % 60, Game.time % 60);
+                Game._time++;
+                Game._gameTime = String.Format("{0:d2}:{1:d2}:{2:d2}", Game._time / 3600, (Game._time / 60) % 60, Game._time % 60);
             }
-            else Game.time = -1;
+            else Game._time = -1;
 
         }
 

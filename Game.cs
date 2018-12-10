@@ -6,20 +6,20 @@ namespace Digger
     public static class Game
     {
         private const string NullMap = @"
-WWWWWWWWWWWWWWWWW
-W   SSSSSTK   K W
-WP  TTTTTT    K W
-W                
-W               W
-WWWWWWWWWWWWW   W
-W  BB B     W   W
-W  B        W   W
-W  B  T       D W
-W  T  B       D W
-W             D W
-WWWWWWWWWWWWWWWWW";
+WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW
+W   SSSSSTK   K WGGGGGGGGGGGGGGGGGGGGGGW
+WP  TTTTTT    K WGGGGGMMGGGGGGMGGGGMGGGW
+W               WGGGMGGGGGGGMMGGGGGGGGGW
+W               WGGGGGGGGGGGGGGGGGGGGGGW
+WWWWWWWWWWWWW   DGGGGGMMGGGGGGGGMGGGGGGW
+W  BB B     W   WGGMGGGGGGGGMGGGGGGGGGGW
+W  B        W   WGGGGGGGGGGGGGGGGGGMGGGW
+W  B  T     D   WGGGMGGGGGGMGGGGGGGMGGGW
+W  T  B     D   WGGGGGGGGGGGGGMMGGGGGGGW
+W           D   WGGMGGGGGGGGGGGGGGGGGGGW
+WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW";
 
-        private const string mapWithPlayerTerrainSackGold = @"
+        private const string MapWithPlayerTerrainSackGold = @"
 PTTGTT TS
 TST  TSTT
 TTTTTTSTT
@@ -27,7 +27,7 @@ T TSTS TT
 T TTTG ST
 TSTSTT TT";
 
-        private const string mapWithPlayerTerrainSackGoldMonster = @"
+        private const string MapWithPlayerTerrainSackGoldMonster = @"
 PTTGTT TST
 TST  TSTTM
 TTT TTSTTT
@@ -52,21 +52,21 @@ W   D   W       W
 W   W   W   W   W
 WWWWWWWWWWWWWWWWW";
 
-        public static ICreature[,] Map;
-        public static int Scores;
-        public static string GameTime = "00:00"; // отрисовка time
-        public static int time; // глобальное время в мс
-        public static bool IsOver;
-        public static int locX; //положение Player Х
-        public static int locY; //положение Player Y
+        public static IObject[,] _map;
+        public static int _scores;
+        public static string _gameTime = "00:00"; // отрисовка time
+        public static int _time; // глобальное время в мс
+        public static bool _isOver;
+        public static int _locX; //положение Player Х
+        public static int _locY; //положение Player Y
 
-        public static Keys KeyPressed; //?
-        public static int MapWidth => Map.GetLength(0);
-        public static int MapHeight => Map.GetLength(1);
+        public static Keys _keyPressed; //?
+        public static int MapWidth => _map.GetLength(0);
+        public static int MapHeight => _map.GetLength(1);
 
         public static void CreateMap()
         {
-            Map = CreatureMapCreator.CreateMap(NullMap);
+	        _map = CreatureMapCreator.CreateMap(NullMap);
         }
     }
 }

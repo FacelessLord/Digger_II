@@ -3,36 +3,36 @@ using static Digger.Game;
 
 namespace Digger.Mobs
 {
-	public class FakeSack : ICreature
+	public class FakeSack : IObject
 	{
-		int FreeFall;
-		bool IsFalling;
+		int _freeFall;
+		bool _isFalling;
 
-		public CreatureCommand Act(int x, int y)
+		public CreatureCommand Update(int x, int y)
 		{
-			var moving = new CreatureCommand {DeltaY = 0};
-			if (y + 1 < MapHeight && (Map[x, y + 1] == null
-			                          || (FreeFall > 0 && (Map[x, y + 1] is Player
-			                                               || Map[x, y + 1] is Wall
-			                                               || Map[x, y + 1] is Monster) || IsFalling)))
+			var moving = new CreatureCommand {_deltaY = 0};
+			if (y + 1 < MapHeight && (_map[x, y + 1] == null
+			                          || (_freeFall > 0 && (_map[x, y + 1] is Player
+			                                               || _map[x, y + 1] is Wall
+			                                               || _map[x, y + 1] is Monster) || _isFalling)))
 			{
-				moving.DeltaY++;
-				FreeFall++;
-				IsFalling = true;
+				moving._deltaY++;
+				_freeFall++;
+				_isFalling = true;
 			}
 
-			if (FreeFall > 1 && !IsFalling)
-				moving.TransformTo = new Gold();
-			if (!IsFalling)
-				FreeFall = 0;
-			if (y + 1 < MapHeight && (Map[x, y + 1] is Terrain
-			                          || Map[x, y + 1] is Sack))
-				IsFalling = false;
-			else IsFalling = false;
+			if (_freeFall > 1 && !_isFalling)
+				moving._transformTo = new Gold();
+			if (!_isFalling)
+				_freeFall = 0;
+			if (y + 1 < MapHeight && (_map[x, y + 1] is Terrain
+			                          || _map[x, y + 1] is Sack))
+				_isFalling = false;
+			else _isFalling = false;
 			return moving;
 		}
 
-		public bool DeadInConflict(ICreature conflictedObject)
+		public bool DestroyedInConflict(IObject conflictedObject)
 		{
 			return conflictedObject is Wall;
 		}
