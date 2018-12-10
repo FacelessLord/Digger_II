@@ -1,3 +1,4 @@
+using Digger.Architecture;
 using static Digger.Game;
 
 namespace Digger.Mobs
@@ -53,6 +54,10 @@ namespace Digger.Mobs
 		{
 			return "Monster.png";
 		}
-
+		
+		public bool IsSolidObject()
+		{
+			return false;
+		}
 	}
 }

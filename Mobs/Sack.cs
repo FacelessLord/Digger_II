@@ -1,3 +1,4 @@
+using Digger.Architecture;
 using static Digger.Game;
 
 namespace Digger.Mobs
@@ -46,6 +47,11 @@ namespace Digger.Mobs
 		public bool DeadInConflict(ICreature conflictedObject)
 		{
 			return false;
+		}
+
+		public bool IsSolidObject()
+		{
+			return true;
 		}
 	}
 }

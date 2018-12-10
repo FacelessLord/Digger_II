@@ -1,4 +1,5 @@
 ﻿using System.Windows.Forms;
+using Digger.Architecture;
 
 namespace Digger
 {
