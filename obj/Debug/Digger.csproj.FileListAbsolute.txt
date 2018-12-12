@@ -39,7 +39,6 @@ C:/Users/w1jtoo/Desktop/digger.csproj/obj/Debug/Digger.csprojResolveAssemblyRefe
 C:/Users/w1jtoo/Desktop/digger.csproj/obj/Debug/Digger.Properties.Resources.resources
 C:/Users/w1jtoo/Desktop/digger.csproj/obj/Debug/Digger.csproj.GenerateResource.Cache
 /home/lord_faceless/Desktop/MatMex/RiderProjects/Digger_II/bin/Debug/Images/Digger.png
-/home/lord_faceless/Desktop/MatMex/RiderProjects/Digger_II/bin/Debug/Images/tenor.gif
 /home/lord_faceless/Desktop/MatMex/RiderProjects/Digger_II/bin/Debug/Images/Key.png
 /home/lord_faceless/Desktop/MatMex/RiderProjects/Digger_II/bin/Debug/Images/Wall.png
 /home/lord_faceless/Desktop/MatMex/RiderProjects/Digger_II/bin/Debug/Images/DoorClose.png
@@ -82,3 +81,11 @@ C:/Users/w1jtoo/Documents/GitHub/Digger_II/obj/Debug/Digger.Properties.Resources
 C:/Users/w1jtoo/Documents/GitHub/Digger_II/obj/Debug/Digger.csproj.GenerateResource.Cache
 /home/lord_faceless/Desktop/MatMex/RiderProjects/Digger_II/bin/Debug/Images/Fireball.png
 /home/lord_faceless/Desktop/MatMex/RiderProjects/Digger_II/bin/Debug/Images/Fireblock.png
+/home/lord_faceless/Desktop/MatMex/RiderProjects/Digger_II/bin/Debug/Images/ColdFireball.png
+/home/lord_faceless/Desktop/MatMex/RiderProjects/Digger_II/bin/Debug/Images/ColdFireblock.png
+/home/lord_faceless/Desktop/MatMex/RiderProjects/Digger_II/bin/Debug/Images/Murloc.png
+<<<<<<< Updated upstream
+/home/lord_faceless/Desktop/MatMex/RiderProjects/Digger_II/bin/Debug/Images/.directory
+=======
+>>>>>>> Stashed changes
+/home/lord_faceless/Desktop/MatMex/RiderProjects/Digger_II/bin/Debug/Images/tenor.gif

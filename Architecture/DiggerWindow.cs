@@ -24,8 +24,9 @@ namespace Digger
             FormBorderStyle = FormBorderStyle.FixedDialog;
             if (imagesDirectory == null)
                 imagesDirectory = new DirectoryInfo("Images");
-            foreach (var e in imagesDirectory.GetFiles("*.*"))
+            foreach (var e in imagesDirectory.GetFiles("*.png"))
             {
+                //MessageBox.Show(e.FullName);
                 if (e.ToString() == "*.gif") // я пытался ("отрисовка" анимаций)
                     ImageAnimator.Animate(Image.FromFile(e.FullName), OnFrameChanged);
                 else
