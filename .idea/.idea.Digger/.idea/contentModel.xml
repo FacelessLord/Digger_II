@@ -19,7 +19,10 @@
       <e p="Digger.csproj" t="IncludeRecursive" />
       <e p="Game.cs" t="Include" />
       <e p="Images" t="Include">
+        <e p=".directory" t="Include" />
         <e p="Boss.png" t="Include" />
+        <e p="ColdFireball.png" t="Include" />
+        <e p="ColdFireblock.png" t="Include" />
         <e p="Digger.png" t="Include" />
         <e p="DoorClose.png" t="Include" />
         <e p="FakeSack.png" t="Include" />
@@ -28,6 +31,7 @@
         <e p="Gold.png" t="Include" />
         <e p="Key.png" t="Include" />
         <e p="Monster.png" t="Include" />
+        <e p="Murloc.png" t="Include" />
         <e p="Sack.png" t="Include" />
         <e p="Terrain.png" t="Include" />
         <e p="Wall.png" t="Include" />
