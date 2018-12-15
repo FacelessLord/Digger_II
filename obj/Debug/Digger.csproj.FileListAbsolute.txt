@@ -89,3 +89,4 @@ C:/Users/w1jtoo/Documents/GitHub/Digger_II/obj/Debug/Digger.csproj.GenerateResou
 =======
 >>>>>>> Stashed changes
 /home/lord_faceless/Desktop/MatMex/RiderProjects/Digger_II/bin/Debug/Images/tenor.gif
+/home/lord_faceless/Desktop/MatMex/RiderProjects/Digger_II/bin/Debug/Images/Turret.png

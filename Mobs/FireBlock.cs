@@ -6,7 +6,7 @@ namespace Digger.Mobs
 	{
 		public CreatureCommand Update(int x, int y)
 		{
-			return new CreatureCommand();
+			return new CreatureCommand(0,0);
 		}
 
 		public string GetImageFileName()

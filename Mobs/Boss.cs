@@ -22,7 +22,7 @@ namespace Digger.Mobs
 			_timer.Interval = 4;
 			_timer.Tick +=SpawnMob;
             
-			var moving = new CreatureCommand { };
+			var moving = new CreatureCommand(0,0);
 			_locationX = x + moving._deltaX;
 			_locationY = y + moving._deltaY;
 			if (_time % 10 == 0 && _map[x, y + 1] == null && _locX == x && _locationY < _locY && _isAlive)

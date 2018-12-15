@@ -10,7 +10,7 @@ namespace Digger.Mobs
 
 		public CreatureCommand Update(int x, int y)
 		{
-			var moving = new CreatureCommand {_deltaY = 0};
+			var moving = new CreatureCommand(0,0);
 			if (y + 1 < MapHeight && (_map[x, y + 1] == null
 			                          || (_freeFall > 0 && (_map[x, y + 1] is Player
 			                                               || _map[x, y + 1] is Wall

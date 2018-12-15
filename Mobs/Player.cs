@@ -23,7 +23,7 @@ namespace Digger.Mobs
 		public CreatureCommand Update(int x, int y)
 		{
 
-			var moving = new CreatureCommand();
+			var moving = new CreatureCommand(0,0);
 			switch (_keyPressed)
 			{
 				case Keys.Up:
@@ -69,7 +69,7 @@ namespace Digger.Mobs
 
 		public bool DestroyedInConflict(IObject conflictedObject)
 		{
-			bool result = conflictedObject is Sack || conflictedObject is Monster || conflictedObject is FakeSack || conflictedObject is FireBlock;
+			bool result = conflictedObject is Sack || conflictedObject is Monster || conflictedObject is FakeSack || conflictedObject is FireBall || conflictedObject is FireBlock;
 			if (result) Game._isOver = true; //game is over 
 			return result;
 		}

@@ -6,7 +6,7 @@ namespace Digger.Mobs
 	{
 		public CreatureCommand Update(int x, int y)
 		{
-			return new CreatureCommand {_deltaX = 0, _deltaY = 0};
+			return new CreatureCommand(0,0);
 		}
 
 		public bool DestroyedInConflict(IObject conflictedObject)

@@ -11,6 +11,7 @@
         <e p="CreatureCommand.cs" t="Include" />
         <e p="CreatureMapCreator.cs" t="Include" />
         <e p="DiggerWindow.cs" t="Include" />
+        <e p="Direction.cs" t="Include" />
         <e p="GameState.cs" t="Include" />
         <e p="ILiving.cs" t="Include" />
         <e p="IObject.cs" t="Include" />
@@ -34,6 +35,7 @@
         <e p="Murloc.png" t="Include" />
         <e p="Sack.png" t="Include" />
         <e p="Terrain.png" t="Include" />
+        <e p="Turret.png" t="Include" />
         <e p="Wall.png" t="Include" />
         <e p="tenor.gif" t="Include" />
       </e>
@@ -41,6 +43,7 @@
         <e p="Boss.cs" t="Include" />
         <e p="Door.cs" t="Include" />
         <e p="FakeSack.cs" t="Include" />
+        <e p="FireBall.cs" t="Include" />
         <e p="FireBlock.cs" t="Include" />
         <e p="Gold.cs" t="Include" />
         <e p="Key.cs" t="Include" />
@@ -48,6 +51,7 @@
         <e p="Player.cs" t="Include" />
         <e p="Sack.cs" t="Include" />
         <e p="Terrain.cs" t="Include" />
+        <e p="Turret.cs" t="Include" />
         <e p="Wall.cs" t="Include" />
       </e>
       <e p="Properties" t="Include">

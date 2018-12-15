@@ -51,6 +51,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Architecture\CreatureCommand.cs" />
+    <Compile Include="Architecture\Direction.cs" />
     <Compile Include="Architecture\GameState.cs" />
     <Compile Include="Architecture\CreatureMapCreator.cs" />
     <Compile Include="Architecture\IObject.cs" />
@@ -64,6 +65,7 @@
     <Compile Include="Mobs\Boss.cs" />
     <Compile Include="Mobs\Door.cs" />
     <Compile Include="Mobs\FakeSack.cs" />
+    <Compile Include="Mobs\FireBall.cs" />
     <Compile Include="Mobs\FireBlock.cs" />
     <Compile Include="Mobs\Gold.cs" />
     <Compile Include="Mobs\Key.cs" />
@@ -71,6 +73,7 @@
     <Compile Include="Mobs\Player.cs" />
     <Compile Include="Mobs\Sack.cs" />
     <Compile Include="Mobs\Terrain.cs" />
+    <Compile Include="Mobs\Turret.cs" />
     <Compile Include="Mobs\Wall.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">

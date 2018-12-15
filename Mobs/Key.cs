@@ -11,7 +11,7 @@ namespace Digger.Mobs
 
         public CreatureCommand Update(int x, int y)
         {
-            var moving = new CreatureCommand();
+            var moving = new CreatureCommand(0,0);
 
             if (_map[x + 1, y] is Player || _map[x - 1, y] is Player ||
                 _map[x, y + 1] is Player || _map[x, y - 1] is Player)

@@ -12,7 +12,7 @@ namespace Digger.Mobs
 
 		public CreatureCommand Update(int x, int y)
 		{
-			var moving = new CreatureCommand {_deltaY = 0};
+			var moving = new CreatureCommand(0,0);
 			if (_time % 3 == 0)
 			{
 				if ((_map[x + 1, y] == null || _map[x + 1, y] is Player) && _way == "left")

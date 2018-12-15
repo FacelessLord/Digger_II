@@ -52,6 +52,8 @@ namespace Digger
                     return CreateObjectByTypeName("Player");
                 case 'T':
                     return CreateObjectByTypeName("Terrain");
+                case 't':
+                    return CreateObjectByTypeName("Turret");
                 case 'G':
                     return CreateObjectByTypeName("Gold");
                 case 'S':
@@ -70,6 +72,8 @@ namespace Digger
                     return CreateObjectByTypeName("FireBlock");
                 case 'B':
                     return CreateObjectByTypeName("Boss");
+                case 'b':
+                    return CreateObjectByTypeName("FireBall");
                 case ' ':
                     return null;
                 default:
