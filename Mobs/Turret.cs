@@ -1,13 +1,14 @@
 using Digger.Architecture;
 using static Digger.Game;
 using System;
+using System.Net.Json;
 
 namespace Digger.Mobs
 {
-	public class Turret : IObject
+	public class Turret : GameObject
 	{
 		private int _timer = 0;
-		private int _speed = 2;
+		private int _speed = 3;
 		public int _direction = 3;
 
 		public Turret(Direction direction)
@@ -18,7 +19,7 @@ namespace Digger.Mobs
 		{
 			_direction = direction;
 		}
-		public CreatureCommand Update(int x, int y)
+		public override CreatureCommand Update(int x, int y)
 		{
 			_timer++;
 			if (_timer % _speed == 0)
@@ -31,24 +32,29 @@ namespace Digger.Mobs
 			return new CreatureCommand(0,0);
 		}
 		
-		public string GetImageFileName()
+		public override string GetImageFileName()
 		{
 			return "Turret.png";
 		}
 
-		public int GetDrawingPriority()
+		public override int GetDrawingPriority()
 		{
 			return 0;
 		}
 
-		public bool IsSolidObject()
+		public override bool IsSolidObject()
 		{
 			return true;
 		}
 
-		public bool DestroyedInConflict(IObject conflictedObject)
+		public override bool DestroyedInConflict(GameObject conflictedGameObject)
 		{
 			return false;
+		}
+
+		public new static PreparedObject FromJsonObject(JsonObjectCollection jsonObject)
+		{
+			return GameObject.FromJsonObject(jsonObject);
 		}
 	}
 }

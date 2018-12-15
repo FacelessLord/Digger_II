@@ -39,6 +39,9 @@
     <Reference Include="PresentationCore" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Net.Json, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>libs\System.Net.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -54,7 +57,9 @@
     <Compile Include="Architecture\Direction.cs" />
     <Compile Include="Architecture\GameState.cs" />
     <Compile Include="Architecture\CreatureMapCreator.cs" />
-    <Compile Include="Architecture\IObject.cs" />
+    <Compile Include="Architecture\GameObject.cs" />
+    <Compile Include="Architecture\JSONMapCreator.cs" />
+    <Compile Include="Architecture\PreparedObject.cs" />
     <Compile Include="Architecture\SpawnRequest.cs" />
     <Compile Include="Game.cs" />
     <Compile Include="Architecture\ILiving.cs" />
@@ -102,6 +107,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Images\*">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Maps\*">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>

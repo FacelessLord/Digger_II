@@ -12,9 +12,11 @@
         <e p="CreatureMapCreator.cs" t="Include" />
         <e p="DiggerWindow.cs" t="Include" />
         <e p="Direction.cs" t="Include" />
+        <e p="GameObject.cs" t="Include" />
         <e p="GameState.cs" t="Include" />
         <e p="ILiving.cs" t="Include" />
-        <e p="IObject.cs" t="Include" />
+        <e p="JSONMapCreator.cs" t="Include" />
+        <e p="PreparedObject.cs" t="Include" />
         <e p="Program.cs" t="Include" />
         <e p="SpawnRequest.cs" t="Include" />
       </e>
@@ -42,6 +44,9 @@
         <e p="Turret.png" t="Include" />
         <e p="Wall.png" t="Include" />
         <e p="tenor.gif" t="Include" />
+      </e>
+      <e p="Maps" t="Include">
+        <e p="map.json" t="Include" />
       </e>
       <e p="Mobs" t="Include">
         <e p="Boss.cs" t="Include" />

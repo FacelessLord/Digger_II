@@ -1,10 +1,11 @@
 using static Digger.Game;
 using System;
+using System.Net.Json;
 using Digger.Architecture;
 
 namespace Digger.Mobs
 {
-	public class Boss : ILiving
+	public class Boss : Living
 	{
 		int _locationX;
 		int _locationY;
@@ -16,7 +17,7 @@ namespace Digger.Mobs
 		System.Windows.Forms.Timer _timer = new System.Windows.Forms.Timer() ;
 
 
-		public CreatureCommand Update(int x, int y)
+		public override CreatureCommand Update(int x, int y)
 		{
 
 			_timer.Interval = 4;
@@ -34,25 +35,26 @@ namespace Digger.Mobs
 			return moving;
 		}
 
-		public bool DestroyedInConflict(IObject conflictedObject)
+		public override bool DestroyedInConflict(GameObject conflictedGameObject)
 		{
-            _isAlive = conflictedObject is Key || conflictedObject is Player || 
-                     conflictedObject is Sack || conflictedObject is FakeSack;
+            _isAlive = conflictedGameObject is Key || conflictedGameObject is Player || 
+                     conflictedGameObject is Sack || conflictedGameObject is FakeSack;
 
             return _isAlive;
 		}
-
-		public bool CanCreateBlocks(int x, int y)
+		
+		
+		public override bool CanCreateBlocks(int x, int y)
 		{
 			return _blocksLeft > 0;
 		}
 
-		public bool IsSolidObject()
+		public override bool IsSolidObject()
 		{
 			return false;
 		}
 
-		public int GetDrawingPriority()
+		public override int GetDrawingPriority()
 		{
 			return 4;
 		}
@@ -62,9 +64,14 @@ namespace Digger.Mobs
 			if (_locX == _locationX && _locationY > _locY && _isAlive)
 				_map[_locationX, _locationY + 1] = new FakeSack();
 		}
-		public string GetImageFileName()
+		public override string GetImageFileName()
 		{
 			return "Boss.png";
+		}
+
+		public new static PreparedObject FromJsonObject(JsonObjectCollection jsonObject)
+		{
+			return GameObject.FromJsonObject(jsonObject);
 		}
 	}
 }

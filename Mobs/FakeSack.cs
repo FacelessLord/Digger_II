@@ -1,14 +1,15 @@
+using System.Net.Json;
 using Digger.Architecture;
 using static Digger.Game;
 
 namespace Digger.Mobs
 {
-	public class FakeSack : IObject
+	public class FakeSack : GameObject
 	{
 		int _freeFall;
 		bool _isFalling;
 
-		public CreatureCommand Update(int x, int y)
+		public override CreatureCommand Update(int x, int y)
 		{
 			var moving = new CreatureCommand(0,0);
 			if (y + 1 < MapHeight && (_map[x, y + 1] == null
@@ -32,24 +33,29 @@ namespace Digger.Mobs
 			return moving;
 		}
 
-		public bool DestroyedInConflict(IObject conflictedObject)
+		public override bool DestroyedInConflict(GameObject conflictedGameObject)
 		{
-			return conflictedObject is Wall;
+			return conflictedGameObject is Wall;
 		}
 
-		public int GetDrawingPriority()
+		public override int GetDrawingPriority()
 		{
 			return 6;
 		}
 
-		public string GetImageFileName()
+		public override string GetImageFileName()
 		{
 			return "FakeSack.png";
 		}
 
-		public bool IsSolidObject()
+		public override bool IsSolidObject()
 		{
 			return true;
+		}
+
+		public new static PreparedObject FromJsonObject(JsonObjectCollection jsonObject)
+		{
+			return GameObject.FromJsonObject(jsonObject);
 		}
 	}
 }

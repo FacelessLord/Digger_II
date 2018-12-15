@@ -6,8 +6,8 @@ namespace Digger
     {
         public int _deltaX;
         public int _deltaY;
-        public IObject _transformTo;
-        public IObject _create;
+        public GameObject _transformTo;
+        public GameObject _create;
         
         public CreatureCommand(int dx,int dy)
         {
@@ -15,7 +15,7 @@ namespace Digger
             _deltaY = dy;
         }
         
-        public CreatureCommand(int dx,int dy,IObject transformTo)
+        public CreatureCommand(int dx,int dy,GameObject transformTo)
         {
             _deltaX = dx;
             _deltaY = dy;

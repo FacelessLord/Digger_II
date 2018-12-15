@@ -1,12 +1,24 @@
+using System.Net.Json;
 using System.Windows;
 using Digger.Architecture;
 
 namespace Digger.Mobs
 {
-	public class FireBall : IObject
+	public class FireBall : GameObject
 	{
 		public Vector _direction;
-		public int _dirIndex = 3;
+		private int _dirIndex;
+
+		public int DirIndex
+		{
+			get => _dirIndex;
+			set
+			{
+				_dirIndex = value;
+				_direction = DirectionHelper.GetVec(value);
+			}
+		}
+
 		public FireBall()
 		{
 			_direction = new Vector(-1,0);
@@ -19,11 +31,11 @@ namespace Digger.Mobs
 		
 		public FireBall(int direction)
 		{
-			_dirIndex =(int) direction;
+			_dirIndex = direction;
 			_direction = DirectionHelper.GetVec(direction);
 		}
 		
-		public CreatureCommand Update(int x, int y)
+		public override CreatureCommand Update(int x, int y)
 		{
 			int dx = (int) _direction.X;
 			int dy = (int) _direction.Y;
@@ -33,28 +45,35 @@ namespace Digger.Mobs
 				return cc;
 			}
 
-			//Game._map[x + dx, y + dy] = null;
+			var request = new SpawnRequest(null, x,y,true);
+			Game.RequestSpawn(request);
+			
 			return new CreatureCommand(0,0,new FireBlock());
 		}
 
-		public string GetImageFileName()
+		public override string GetImageFileName()
 		{
-			return "Fireball_"+_dirIndex+".png";
+			return "Fireball_"+DirIndex+".png";
 		}
 
-		public int GetDrawingPriority()
+		public override int GetDrawingPriority()
 		{
 			return 0;
 		}
 
-		public bool IsSolidObject()
+		public override bool IsSolidObject()
 		{
 			return false;
 		}
 
-		public bool DestroyedInConflict(IObject conflictedObject)
+		public override bool DestroyedInConflict(GameObject conflictedGameObject)
 		{
-			return !(conflictedObject is FireBlock) && conflictedObject.IsSolidObject();
+			return !(conflictedGameObject is FireBlock) && conflictedGameObject.IsSolidObject();
+		}
+
+		public new static PreparedObject FromJsonObject(JsonObjectCollection jsonObject)
+		{
+			return GameObject.FromJsonObject(jsonObject);
 		}
 	}
 }

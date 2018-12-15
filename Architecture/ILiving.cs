@@ -1,7 +1,7 @@
 ﻿namespace Digger.Architecture
 {
-    public interface ILiving : IObject
+    public abstract class Living : GameObject
     {
-        bool CanCreateBlocks(int x, int y);
+        public abstract bool CanCreateBlocks(int x, int y);
     }
 }

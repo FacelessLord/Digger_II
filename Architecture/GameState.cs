@@ -46,17 +46,30 @@ namespace Digger
             for (var x = 0; x < Game.MapWidth; x++)
             for (var y = 0; y < Game.MapHeight; y++)
                 Game._map[x, y] = SelectWinnerCandidatePerLocation(creaturesPerLocation, x, y);
+            var removal = new List<SpawnRequest>();
             foreach (var request in _spawnRequests)
             {
-                if (Game._map[request._x, request._y] == null || request._forceSpawn)
+                if (request._delay <= 0)
                 {
-                    Game._map[request._x, request._y] = request._obj;
+                    if (Game._map[request._x, request._y] == null || request._forceSpawn)
+                    {
+                        Game._map[request._x, request._y] = request._obj;
+                    }
+                    removal.Add(request);
+                }
+                else
+                {
+                    request._delay-=1;
                 }
             }
-            _spawnRequests.Clear();
+
+            foreach (var request in removal)
+            {
+                _spawnRequests.Remove(request);
+            }
         }
 
-        private static IObject SelectWinnerCandidatePerLocation(List<IObject>[,] creatures, int x, int y)
+        private static GameObject SelectWinnerCandidatePerLocation(List<GameObject>[,] creatures, int x, int y)
         {
             var candidates = creatures[x, y];
             var aliveCandidates = candidates.ToList();
@@ -71,12 +84,12 @@ namespace Digger
             return aliveCandidates.FirstOrDefault();
         }
 
-        private List<IObject>[,] GetCandidatesPerLocation()
+        private List<GameObject>[,] GetCandidatesPerLocation()
         {
-            var creatures = new List<IObject>[Game.MapWidth, Game.MapHeight];
+            var creatures = new List<GameObject>[Game.MapWidth, Game.MapHeight];
             for (var x = 0; x < Game.MapWidth; x++)
             for (var y = 0; y < Game.MapHeight; y++)
-                creatures[x, y] = new List<IObject>();
+                creatures[x, y] = new List<GameObject>();
             foreach (var e in _animations)
             {
                 var x = e._targetLogicalLocation.X;

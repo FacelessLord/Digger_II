@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Json;
 using System.Reflection;
 using Digger.Architecture;
 using Digger.Mobs;
@@ -9,21 +10,21 @@ namespace Digger
 {
     public static class CreatureMapCreator
     {
-        private static readonly Dictionary<string, Func<IObject>> Factory = new Dictionary<string, Func<IObject>>();
+        private static readonly Dictionary<string, Func<GameObject>> Factory = new Dictionary<string, Func<GameObject>>();
 
-        public static IObject[,] CreateMap(string map, string separator = "\r\n")
+        public static GameObject[,] CreateMap(string map, string separator = "\r\n")
         {
             var rows = map.Split(new[] {separator}, StringSplitOptions.RemoveEmptyEntries);
             if (rows.Select(z => z.Length).Distinct().Count() != 1)
                 throw new Exception($"Wrong test map '{map}'");
-            var result = new IObject[rows[0].Length, rows.Length];
+            var result = new GameObject[rows[0].Length, rows.Length];
             for (var x = 0; x < rows[0].Length; x++)
             for (var y = 0; y < rows.Length; y++)
                 result[x, y] = CreateCreatureBySymbol(rows[y][x]);
             return result;
         }
 
-        private static IObject CreateObjectByTypeName(string name)
+        private static GameObject CreateObjectByTypeName(string name)
         {
             // Это использование механизма рефлексии. 
             // Ему посвящена одна из последних лекций второй части курса Основы программирования
@@ -43,14 +44,14 @@ namespace Digger
                     .FirstOrDefault(z => z.Name == name);
                 if (type == null)
                     throw new Exception($"Can't find type '{name}'");
-                Factory[name] = () => (IObject) Activator.CreateInstance(type);
+                Factory[name] = () => (GameObject) Activator.CreateInstance(type);
             }
 
             return Factory[name]();
         }
 
 
-        private static IObject CreateCreatureBySymbol(char c)
+        private static GameObject CreateCreatureBySymbol(char c)
         {
             switch (c)
             {

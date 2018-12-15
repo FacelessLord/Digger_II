@@ -1,16 +1,17 @@
+using System.Net.Json;
 using Digger.Architecture;
 using static Digger.Game;
 
 namespace Digger.Mobs
 {
-	public class Monster : ILiving
+	public class Monster : Living
 	{
 		string
 			_way = "left"; // вектор движения моба, нужно создать специальный класс вектора для "умного" движения мобов
 
 		private int _blocksLeft = 0;
 
-		public CreatureCommand Update(int x, int y)
+		public override CreatureCommand Update(int x, int y)
 		{
 			var moving = new CreatureCommand(0,0);
 			if (_time % 3 == 0)
@@ -44,32 +45,37 @@ namespace Digger.Mobs
 			return moving;
 		}
 
-		public bool DestroyedInConflict(IObject conflictedObject)
+		public override bool DestroyedInConflict(GameObject conflictedGameObject)
 		{
-			return conflictedObject is Sack || conflictedObject is Monster || conflictedObject is FakeSack ||
-			       conflictedObject is FireBlock||
-			       conflictedObject is Key;
+			return conflictedGameObject is Sack || conflictedGameObject is Monster || conflictedGameObject is FakeSack ||
+			       conflictedGameObject is FireBlock||
+			       conflictedGameObject is Key;
 		}
 
-		public int GetDrawingPriority()
+		public override int GetDrawingPriority()
 		{
 			return 11;
 		}
 
-		public string GetImageFileName()
+		public override string GetImageFileName()
 		{
 			return "Monster.png";
 		}
 
-		public bool IsSolidObject()
+		public override bool IsSolidObject()
 		{
 			return false;
 		}
 
 
-		public bool CanCreateBlocks(int x, int y)
+		public override bool CanCreateBlocks(int x, int y)
 		{
 			return _blocksLeft > 0;
+		}
+
+		public new static PreparedObject FromJsonObject(JsonObjectCollection jsonObject)
+		{
+			return GameObject.FromJsonObject(jsonObject);
 		}
 	}
 }

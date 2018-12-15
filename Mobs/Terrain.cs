@@ -1,32 +1,38 @@
+using System.Net.Json;
 using Digger.Architecture;
 
 namespace Digger.Mobs
 {
-	class Terrain : IObject
+	class Terrain : GameObject
 	{
-		public CreatureCommand Update(int x, int y)
+		public override CreatureCommand Update(int x, int y)
 		{
 			return new CreatureCommand(0, 0, this);
 		}
 
-		public bool DestroyedInConflict(IObject conflictedObject)
+		public override bool DestroyedInConflict(GameObject conflictedGameObject)
 		{
 			return true;
 		}
 
-		public int GetDrawingPriority()
+		public override int GetDrawingPriority()
 		{
 			return 8;
 		}
 
-		public string GetImageFileName()
+		public override string GetImageFileName()
 		{
 			return "Terrain.png";
 		}
 
-		public bool IsSolidObject()
+		public override bool IsSolidObject()
 		{
 			return false;
+		}
+
+		public new static PreparedObject FromJsonObject(JsonObjectCollection jsonObject)
+		{
+			return GameObject.FromJsonObject(jsonObject);
 		}
 	}
 }

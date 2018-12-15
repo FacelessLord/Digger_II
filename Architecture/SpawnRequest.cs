@@ -5,7 +5,7 @@ namespace Digger.Architecture
 		/// <summary>
 		/// Object to spawn
 		/// </summary>
-		public IObject _obj;
+		public GameObject _obj;
 		/// <summary>
 		/// Replace existing objects?
 		/// </summary>
@@ -20,14 +20,19 @@ namespace Digger.Architecture
 		/// </summary>
 		public int _y;
 
-		public SpawnRequest(IObject obj, int x, int y)
+		/// <summary>
+		/// Time(in ticks) after which request will be satisfied
+		/// </summary>
+		public int _delay = 0;
+
+		public SpawnRequest(GameObject obj, int x, int y)
 		{
 			_obj = obj;
 			_x = x;
 			_y = y;
 		}
 		
-		public SpawnRequest(IObject obj, int x, int y,bool forceSpawn)
+		public SpawnRequest(GameObject obj, int x, int y,bool forceSpawn)
 		{
 			_obj = obj;
 			_x = x;
@@ -38,6 +43,15 @@ namespace Digger.Architecture
 		public void SetForceSpawn(bool forceSpawn)
 		{
 			_forceSpawn = forceSpawn;
+		}
+		public void SetDelay(int delay)
+		{
+			_delay = delay;
+		}
+
+		public override string ToString()
+		{
+			return (_obj == null ? "null" : _obj.GetImageFileName()) + "|" + _x + "|" + _y + "|" + _forceSpawn;
 		}
 	}
 }

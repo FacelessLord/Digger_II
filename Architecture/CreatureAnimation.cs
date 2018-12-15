@@ -6,7 +6,7 @@ namespace Digger
     public class CreatureAnimation
     {
         public CreatureCommand _command;
-        public IObject _creature;
+        public GameObject _creature;
         public Point _location;
         public Point _targetLogicalLocation;
     }

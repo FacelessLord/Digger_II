@@ -1,0 +1,12 @@
+{
+    "width":20,
+    "height":20,
+    "walls":true,
+    "player":{"type":"Player","x":1,"y":2},
+    "monster1":{"type":"Monster","x":10,"y":2},
+    "monster2":{"type":"Monster","x":10,"y":3},
+    "monster3":{"type":"Monster","x":10,"y":4},
+    "monster4":{"type":"Monster","x":10,"y":1},
+    "key":{"type":"Key","x":10,"y":6},
+    "door":{"type":"Door","x":10,"y":16}
+} 

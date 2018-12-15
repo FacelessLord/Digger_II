@@ -1,39 +1,45 @@
+using System.Net.Json;
 using Digger.Architecture;
 using static Digger.Game;
 
 namespace Digger.Mobs
 {
-	public class Door : IObject
+	public class Door : GameObject
 	{
-		public CreatureCommand Update(int x, int y)
+		public override CreatureCommand Update(int x, int y)
 		{
 			return new CreatureCommand(0,0);
 		}
 
-		public bool DestroyedInConflict(IObject conflictedObject)
+		public override bool DestroyedInConflict(GameObject conflictedGameObject)
 		{
-			if (conflictedObject is Key)
+			if (conflictedGameObject is Key)
 			{
 				_scores += 50;
 			}
 
-			return conflictedObject is Key;
+			return conflictedGameObject is Key;
 		}
 
-		public int GetDrawingPriority()
+		public override int GetDrawingPriority()
 		{
 			return 0;
 		}
 
-		public string GetImageFileName()
+		public override string GetImageFileName()
 		{
 			//if (false) return "OpenDoor.png";
 			return "DoorClose.png";
 		}
 
-		public bool IsSolidObject()
+		public override bool IsSolidObject()
 		{
 			return true;
+		}
+		
+		public new static PreparedObject FromJsonObject(JsonObjectCollection jsonObject)
+		{
+			return GameObject.FromJsonObject(jsonObject);
 		}
 	}
 }

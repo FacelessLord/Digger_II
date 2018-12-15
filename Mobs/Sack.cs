@@ -1,24 +1,25 @@
+using System.Net.Json;
 using Digger.Architecture;
 using static Digger.Game;
 
 namespace Digger.Mobs
 {
-	public class Sack : IObject
+	public class Sack : GameObject
 	{
 		public int _freeFall; //количетво клеток свободного падения 
 		public bool _isFalling;
 
-		public int GetDrawingPriority()
+		public override int GetDrawingPriority()
 		{
 			return 8;
 		}
 
-		public string GetImageFileName()
+		public override string GetImageFileName()
 		{
 			return "Sack.png";
 		}
 
-		public CreatureCommand Update(int x, int y)
+		public override CreatureCommand Update(int x, int y)
 		{
 
 			var moving = new CreatureCommand(0,0);
@@ -44,14 +45,19 @@ namespace Digger.Mobs
 			return moving;
 		}
 
-		public bool DestroyedInConflict(IObject conflictedObject)
+		public override bool DestroyedInConflict(GameObject conflictedGameObject)
 		{
 			return false;
 		}
 
-		public bool IsSolidObject()
+		public override bool IsSolidObject()
 		{
 			return true;
+		}
+
+		public new static PreparedObject FromJsonObject(JsonObjectCollection jsonObject)
+		{
+			return GameObject.FromJsonObject(jsonObject);
 		}
 	}
 }

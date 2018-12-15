@@ -53,7 +53,7 @@ W   D   W       W
 W   W   W   W   W
 WWWWWWWWWWWWWWWWW";
 
-		public static IObject[,] _map;
+		public static GameObject[,] _map;
 		public static int _scores;
 		public static string _gameTime = "00:00"; // отрисовка time
 		public static int _time; // глобальное время в мс
@@ -68,7 +68,8 @@ WWWWWWWWWWWWWWWWW";
 
 		public static void CreateMap()
 		{
-			_map = CreatureMapCreator.CreateMap(NullMap);
+//			_map = CreatureMapCreator.CreateMap(NullMap);
+			_map = JsonMapCreator.CreateMap("Maps/map.json");
 		}
 
 		public static void RequestSpawn(SpawnRequest request)
