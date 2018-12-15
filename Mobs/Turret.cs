@@ -6,25 +6,29 @@ namespace Digger.Mobs
 {
 	public class Turret : IObject
 	{
-		private int _x = 0;
-		private int _y = 0;
-		System.Windows.Forms.Timer _timer = new System.Windows.Forms.Timer();
+		private int _timer = 0;
+		private int _speed = 2;
+		public int _direction = 3;
 
-		public Turret()
+		public Turret(Direction direction)
 		{
-			_timer.Interval = 1;
-			_timer.Tick +=SpawnMob;
+			_direction = (int)direction;
 		}
-		
+		public Turret(int direction)
+		{
+			_direction = direction;
+		}
 		public CreatureCommand Update(int x, int y)
 		{
-			_x = x;
-			_y = y;
+			_timer++;
+			if (_timer % _speed == 0)
+			{
+				var vec = DirectionHelper.GetVec(_direction);
+				var ballRequest = new SpawnRequest(new FireBall(_direction), (int) (x + vec.X), (int) (y + vec.Y));
+				Game.RequestSpawn(ballRequest);
+			}
+
 			return new CreatureCommand(0,0);
-		}
-		private void SpawnMob(object sender, EventArgs args)
-		{
-			_map[_x-1, _y] = new FireBall();
 		}
 		
 		public string GetImageFileName()

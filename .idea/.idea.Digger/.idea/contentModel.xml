@@ -16,6 +16,7 @@
         <e p="ILiving.cs" t="Include" />
         <e p="IObject.cs" t="Include" />
         <e p="Program.cs" t="Include" />
+        <e p="SpawnRequest.cs" t="Include" />
       </e>
       <e p="Digger.csproj" t="IncludeRecursive" />
       <e p="Game.cs" t="Include" />
@@ -27,7 +28,10 @@
         <e p="Digger.png" t="Include" />
         <e p="DoorClose.png" t="Include" />
         <e p="FakeSack.png" t="Include" />
-        <e p="Fireball.png" t="Include" />
+        <e p="Fireball_0.png" t="Include" />
+        <e p="Fireball_1.png" t="Include" />
+        <e p="Fireball_2.png" t="Include" />
+        <e p="Fireball_3.png" t="Include" />
         <e p="Fireblock.png" t="Include" />
         <e p="Gold.png" t="Include" />
         <e p="Key.png" t="Include" />

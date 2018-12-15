@@ -6,12 +6,20 @@ namespace Digger.Mobs
 	public class FireBall : IObject
 	{
 		public Vector _direction;
+		public int _dirIndex = 3;
 		public FireBall()
 		{
 			_direction = new Vector(-1,0);
 		}
 		public FireBall(Direction direction)
 		{
+			_dirIndex =(int) direction;
+			_direction = DirectionHelper.GetVec(direction);
+		}
+		
+		public FireBall(int direction)
+		{
+			_dirIndex =(int) direction;
 			_direction = DirectionHelper.GetVec(direction);
 		}
 		
@@ -25,13 +33,13 @@ namespace Digger.Mobs
 				return cc;
 			}
 
-			Game._map[x + dx, y + dy] = null;
+			//Game._map[x + dx, y + dy] = null;
 			return new CreatureCommand(0,0,new FireBlock());
 		}
 
 		public string GetImageFileName()
 		{
-			return "Fireball.png";
+			return "Fireball_"+_dirIndex+".png";
 		}
 
 		public int GetDrawingPriority()

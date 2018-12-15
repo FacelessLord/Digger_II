@@ -79,7 +79,6 @@ C:/Users/w1jtoo/Documents/GitHub/Digger_II/bin/Debug/nunit.framework.dll
 C:/Users/w1jtoo/Documents/GitHub/Digger_II/obj/Debug/Digger.csprojResolveAssemblyReference.cache
 C:/Users/w1jtoo/Documents/GitHub/Digger_II/obj/Debug/Digger.Properties.Resources.resources
 C:/Users/w1jtoo/Documents/GitHub/Digger_II/obj/Debug/Digger.csproj.GenerateResource.Cache
-/home/lord_faceless/Desktop/MatMex/RiderProjects/Digger_II/bin/Debug/Images/Fireball.png
 /home/lord_faceless/Desktop/MatMex/RiderProjects/Digger_II/bin/Debug/Images/Fireblock.png
 /home/lord_faceless/Desktop/MatMex/RiderProjects/Digger_II/bin/Debug/Images/ColdFireball.png
 /home/lord_faceless/Desktop/MatMex/RiderProjects/Digger_II/bin/Debug/Images/ColdFireblock.png
@@ -90,3 +89,7 @@ C:/Users/w1jtoo/Documents/GitHub/Digger_II/obj/Debug/Digger.csproj.GenerateResou
 >>>>>>> Stashed changes
 /home/lord_faceless/Desktop/MatMex/RiderProjects/Digger_II/bin/Debug/Images/tenor.gif
 /home/lord_faceless/Desktop/MatMex/RiderProjects/Digger_II/bin/Debug/Images/Turret.png
+/home/lord_faceless/Desktop/MatMex/RiderProjects/Digger_II/bin/Debug/Images/Fireball_0.png
+/home/lord_faceless/Desktop/MatMex/RiderProjects/Digger_II/bin/Debug/Images/Fireball_1.png
+/home/lord_faceless/Desktop/MatMex/RiderProjects/Digger_II/bin/Debug/Images/Fireball_2.png
+/home/lord_faceless/Desktop/MatMex/RiderProjects/Digger_II/bin/Debug/Images/Fireball_3.png

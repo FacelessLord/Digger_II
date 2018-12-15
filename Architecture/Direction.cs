@@ -24,5 +24,18 @@ namespace Digger.Architecture
 
 			return new Vector(0,0);
 		}
+		
+		public static Vector GetVec(int dir)
+		{
+			switch (dir)
+			{
+				case 0:return new Vector(0,-1);
+				case 1:return new Vector(1,0);
+				case 2:return new Vector(0,1);
+				case 3:return new Vector(-1,0);
+			}
+
+			return new Vector(0,0);
+		}
 	}
 }

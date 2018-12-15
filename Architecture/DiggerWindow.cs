@@ -18,6 +18,7 @@ namespace Digger
         public DiggerWindow(DirectoryInfo imagesDirectory = null)
         {
             _gameState = new GameState();
+            Game._state = _gameState;
             ClientSize = new Size(
                 GameState.ElementSize * Game.MapWidth,
                 GameState.ElementSize * Game.MapHeight + GameState.ElementSize);

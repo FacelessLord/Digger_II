@@ -11,6 +11,8 @@ namespace Digger
         public const int ElementSize = 32;
         public List<CreatureAnimation> _animations = new List<CreatureAnimation>();
 
+        public List<SpawnRequest> _spawnRequests = new List<SpawnRequest>();
+        
         public void BeginAct()
         {
             _animations.Clear();
@@ -44,6 +46,14 @@ namespace Digger
             for (var x = 0; x < Game.MapWidth; x++)
             for (var y = 0; y < Game.MapHeight; y++)
                 Game._map[x, y] = SelectWinnerCandidatePerLocation(creaturesPerLocation, x, y);
+            foreach (var request in _spawnRequests)
+            {
+                if (Game._map[request._x, request._y] == null || request._forceSpawn)
+                {
+                    Game._map[request._x, request._y] = request._obj;
+                }
+            }
+            _spawnRequests.Clear();
         }
 
         private static IObject SelectWinnerCandidatePerLocation(List<IObject>[,] creatures, int x, int y)

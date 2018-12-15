@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using Digger.Architecture;
+using Digger.Mobs;
 
 namespace Digger
 {
@@ -29,6 +30,11 @@ namespace Digger
             // В обычном коде можно было обойтись без нее, но нам нужно было написать такой код,
             // который работал бы, даже если вы ещё не создали класс Monster или Gold. 
             // Просто написать new Gold() мы не могли, потому что это не скомпилировалось бы пока вы не создадите класс Gold.
+            if (name.StartsWith("Turret"))
+            {
+                return new Turret(int.Parse(name.Substring(6)));
+            }
+            
             if (!Factory.ContainsKey(name))
             {
                 var type = Assembly
@@ -52,8 +58,14 @@ namespace Digger
                     return CreateObjectByTypeName("Player");
                 case 'T':
                     return CreateObjectByTypeName("Terrain");
-                case 't':
-                    return CreateObjectByTypeName("Turret");
+                case '0':
+                    return CreateObjectByTypeName("Turret0");
+                case '1':
+                    return CreateObjectByTypeName("Turret1");
+                case '2':
+                    return CreateObjectByTypeName("Turret2");
+                case '3':
+                    return CreateObjectByTypeName("Turret3");
                 case 'G':
                     return CreateObjectByTypeName("Gold");
                 case 'S':
