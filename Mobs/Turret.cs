@@ -11,14 +11,15 @@ namespace Digger.Mobs
 		private int _speed = 3;
 		public int _direction = 3;
 
-		public Turret(Direction direction)
+		public Turret()
 		{
-			_direction = (int)direction;
 		}
+
 		public Turret(int direction)
 		{
 			_direction = direction;
 		}
+
 		public override CreatureCommand Update(int x, int y)
 		{
 			_timer++;
@@ -29,9 +30,9 @@ namespace Digger.Mobs
 				Game.RequestSpawn(ballRequest);
 			}
 
-			return new CreatureCommand(0,0);
+			return new CreatureCommand(0, 0);
 		}
-		
+
 		public override string GetImageFileName()
 		{
 			return "Turret.png";
@@ -54,7 +55,21 @@ namespace Digger.Mobs
 
 		public new static PreparedObject FromJsonObject(JsonObjectCollection jsonObject)
 		{
-			return GameObject.FromJsonObject(jsonObject);
+			var po = GameObject.FromJsonObject(jsonObject);
+			var dir = 3;
+			foreach (var obj in jsonObject)
+			{
+				if (obj is JsonNumericValue n)
+				{
+					if (n.Name == "direction")
+					{
+						dir = (int) n.Value;
+					}
+				}
+			}
+
+			((Turret) po._obj)._direction = dir;
+			return po;
 		}
 	}
 }

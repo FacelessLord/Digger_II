@@ -47,8 +47,9 @@ namespace Digger.Mobs
 
 		public override bool DestroyedInConflict(GameObject conflictedGameObject)
 		{
-			return conflictedGameObject is Sack || conflictedGameObject is Monster || conflictedGameObject is FakeSack ||
-			       conflictedGameObject is FireBlock||
+			return conflictedGameObject is Sack || conflictedGameObject is Monster ||
+			       conflictedGameObject is FakeSack ||
+			       conflictedGameObject is FireBlock || conflictedGameObject is FireBall ||
 			       conflictedGameObject is Key;
 		}
 

@@ -100,10 +100,6 @@ namespace Digger.Architecture
 			}
 
 			var map = new GameObject[height,width];
-			foreach (var prepObj in gameObjects)
-			{
-				map[prepObj._x, prepObj._y] = prepObj._obj;
-			}
 
 			if (walls)
 			{
@@ -117,6 +113,10 @@ namespace Digger.Architecture
 					map[i,0] = new Wall();
 					map[i,width-1] = new Wall();
 				}
+			}
+			foreach (var prepObj in gameObjects)
+			{
+				map[prepObj._x, prepObj._y] = prepObj._obj;
 			}
 
 			return map;

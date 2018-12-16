@@ -1,12 +1,16 @@
 {
-    "width":20,
-    "height":20,
+    "width":21,
+    "height":21,
     "walls":true,
     "player":{"type":"Player","x":1,"y":2},
     "monster1":{"type":"Monster","x":10,"y":2},
     "monster2":{"type":"Monster","x":10,"y":3},
     "monster3":{"type":"Monster","x":10,"y":4},
     "monster4":{"type":"Monster","x":10,"y":1},
+    "turret_ul":{"type":"Turret","x":0,"y":1,"direction":1},
+    "turret_ur":{"type":"Turret","x":19,"y":0,"direction":2},
+    "turret_dr":{"type":"Turret","x":20,"y":19,"direction":3},
+    "turret_dl":{"type":"Turret","x":1,"y":20,"direction":0},
     "key":{"type":"Key","x":10,"y":6},
     "door":{"type":"Door","x":10,"y":16}
 } 
