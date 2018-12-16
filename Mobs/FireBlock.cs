@@ -25,14 +25,9 @@ namespace Digger.Mobs
 			return false;
 		}
 
-		public override bool DestroyedInConflict(GameObject conflictedGameObject)
+		public override bool DestroyedInConflict(GameObject conflictedGameObject, params int[] coords)
 		{
 			return !(conflictedGameObject is Player || conflictedGameObject is Monster);
-		}
-
-		public new static PreparedObject FromJsonObject(JsonObjectCollection jsonObject)
-		{
-			return GameObject.FromJsonObject(jsonObject);
 		}
 	}
 }

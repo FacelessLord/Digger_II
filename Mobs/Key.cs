@@ -12,7 +12,7 @@ namespace Digger.Mobs
 
         public override CreatureCommand Update(int x, int y)
         {
-            var moving = new CreatureCommand(0,0);
+            var moving = new CreatureCommand(0, 0);
 
             if (_map[x + 1, y] is Player || _map[x - 1, y] is Player ||
                 _map[x, y + 1] is Player || _map[x, y - 1] is Player)
@@ -39,11 +39,9 @@ namespace Digger.Mobs
                 moving._deltaX = 0;
             if (y + moving._deltaY >= MapHeight || y + moving._deltaY < 0)
                 moving._deltaY = 0;
-            if (_map[x + moving._deltaX, y + moving._deltaY] is Sack
-                || _map[x + moving._deltaX, y + moving._deltaY] is Key
-                || _map[x + moving._deltaX, y + moving._deltaY] is Wall
-                || _map[x + moving._deltaX, y + moving._deltaY] is Monster
-                || _map[x + moving._deltaX, y + moving._deltaY] is Player)
+            var target = _map[x + moving._deltaX, y + moving._deltaY];
+            if (target != null && target.IsSolidObject() && !( target is Door)
+                || target is Living)
             {
                 moving._deltaX = 0;
                 moving._deltaY = 0;
@@ -55,9 +53,9 @@ namespace Digger.Mobs
             return moving;
         }
 
-        public override bool DestroyedInConflict(GameObject conflictedGameObject)
+        public override bool DestroyedInConflict(GameObject conflictedGameObject, params int[] coords)
         {
-            return conflictedGameObject is Door;
+            return conflictedGameObject is Door || conflictedGameObject.IsSolidObject();
         }
 
         public override int GetDrawingPriority()
@@ -73,11 +71,6 @@ namespace Digger.Mobs
         public override bool IsSolidObject()
         {
             return true;
-        }
-
-        public new static PreparedObject FromJsonObject(JsonObjectCollection jsonObject)
-        {
-            return GameObject.FromJsonObject(jsonObject);
         }
     }
 }

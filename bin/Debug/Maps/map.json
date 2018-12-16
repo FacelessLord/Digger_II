@@ -1,6 +1,6 @@
 {
-    "width":21,
-    "height":21,
+    "width":20,
+    "height":20,
     "walls":true,
     "player":{"type":"Player","x":1,"y":2},
     "monster1":{"type":"Monster","x":10,"y":2},
@@ -8,9 +8,16 @@
     "monster3":{"type":"Monster","x":10,"y":4},
     "monster4":{"type":"Monster","x":10,"y":1},
     "turret_ul":{"type":"Turret","x":0,"y":1,"direction":1},
-    "turret_ur":{"type":"Turret","x":19,"y":0,"direction":2},
-    "turret_dr":{"type":"Turret","x":20,"y":19,"direction":3},
-    "turret_dl":{"type":"Turret","x":1,"y":20,"direction":0},
-    "key":{"type":"Key","x":10,"y":6},
-    "door":{"type":"Door","x":10,"y":16}
+    "turret_ur":{"type":"Turret","x":18,"y":0,"direction":2},
+    "turret_dr":{"type":"Turret","x":19,"y":18,"direction":3},
+    "turret_dl":{"type":"Turret","x":1,"y":19,"direction":0},
+    "air_ul":{"type":"Air","x":19,"y":1,"direction":1},
+    "air__ur":{"type":"Air","x":18,"y":19,"direction":2},
+    "air__dr":{"type":"Air","x":0,"y":18,"direction":3},
+    "air__dl":{"type":"Air","x":1,"y":0,"direction":0},
+    "key":{"type":"Key","x":10,"y":10},
+    "door":{"type":"Door","x":10,"y":16},
+    "portal":{"type":"MonsterPortal","x":10,"y":5},
+    "tpportal":{"type":"BluePortal","x":10,"y":15, "toX":18, "toY": 12},
+    "reportal":{"type":"BluePortal","x":18,"y":15, "toX":10, "toY": 14}
 } 

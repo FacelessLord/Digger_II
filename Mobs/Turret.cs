@@ -48,7 +48,7 @@ namespace Digger.Mobs
 			return true;
 		}
 
-		public override bool DestroyedInConflict(GameObject conflictedGameObject)
+		public override bool DestroyedInConflict(GameObject conflictedGameObject, params int[] coords)
 		{
 			return false;
 		}

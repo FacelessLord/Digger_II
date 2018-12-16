@@ -95,3 +95,6 @@ C:/Users/w1jtoo/Documents/GitHub/Digger_II/obj/Debug/Digger.csproj.GenerateResou
 /home/lord_faceless/Desktop/MatMex/RiderProjects/Digger_II/bin/Debug/Images/Fireball_3.png
 /home/lord_faceless/Desktop/MatMex/RiderProjects/Digger_II/bin/Debug/System.Net.Json.dll
 /home/lord_faceless/Desktop/MatMex/RiderProjects/Digger_II/bin/Debug/Maps/map.json
+/home/lord_faceless/Desktop/MatMex/RiderProjects/Digger_II/bin/Debug/Images/Portal.png
+/home/lord_faceless/Desktop/MatMex/RiderProjects/Digger_II/bin/Debug/Images/BluePortal.png
+/home/lord_faceless/Desktop/MatMex/RiderProjects/Digger_II/bin/Debug/Images/OrangePortal.png

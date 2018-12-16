@@ -68,7 +68,7 @@ namespace Digger.Mobs
 			return false;
 		}
 
-		public override bool DestroyedInConflict(GameObject conflictedGameObject)
+		public override bool DestroyedInConflict(GameObject conflictedGameObject, params int[] coords)
 		{
 			bool result = conflictedGameObject is Sack || conflictedGameObject is Monster || conflictedGameObject is FakeSack || conflictedGameObject is FireBall || conflictedGameObject is FireBlock;
 			if (result) Game._isOver = true; //game is over 
@@ -79,11 +79,6 @@ namespace Digger.Mobs
 		public override bool CanCreateBlocks(int x, int y)
 		{
 			return _blocksLeft > 0;
-		}
-
-		public new static PreparedObject FromJsonObject(JsonObjectCollection jsonObject)
-		{
-			return GameObject.FromJsonObject(jsonObject);
 		}
 	}
 }

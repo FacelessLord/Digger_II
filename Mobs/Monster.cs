@@ -45,7 +45,7 @@ namespace Digger.Mobs
 			return moving;
 		}
 
-		public override bool DestroyedInConflict(GameObject conflictedGameObject)
+		public override bool DestroyedInConflict(GameObject conflictedGameObject, params int[] coords)
 		{
 			return conflictedGameObject is Sack || conflictedGameObject is Monster ||
 			       conflictedGameObject is FakeSack ||
@@ -60,7 +60,7 @@ namespace Digger.Mobs
 
 		public override string GetImageFileName()
 		{
-			return "Monster.png";
+			return "Murloc.png";
 		}
 
 		public override bool IsSolidObject()
@@ -72,11 +72,6 @@ namespace Digger.Mobs
 		public override bool CanCreateBlocks(int x, int y)
 		{
 			return _blocksLeft > 0;
-		}
-
-		public new static PreparedObject FromJsonObject(JsonObjectCollection jsonObject)
-		{
-			return GameObject.FromJsonObject(jsonObject);
 		}
 	}
 }

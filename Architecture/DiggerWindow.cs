@@ -74,7 +74,8 @@ namespace Digger
                 Brushes.Black, 0, 0, GameState.ElementSize * Game.MapWidth,
                 GameState.ElementSize * Game.MapHeight);
             foreach (var a in _gameState._animations)
-                e.Graphics.DrawImage(_bitmaps[a._creature.GetImageFileName()], a._location);
+                if(a._creature.GetImageFileName() != null)
+                    e.Graphics.DrawImage(_bitmaps[a._creature.GetImageFileName()], a._location);
             e.Graphics.ResetTransform();
             e.Graphics.DrawString("Score " + Game._scores.ToString(), new Font("Arial", 16), Brushes.Blue, 0, 0);
             e.Graphics.DrawString("Time " + Game._gameTime, new Font("Arial", 16), Brushes.Red, 150, 0);

@@ -10,7 +10,7 @@ namespace Digger.Mobs
 			return new CreatureCommand(0, 0, this);
 		}
 
-		public override bool DestroyedInConflict(GameObject conflictedGameObject)
+		public override bool DestroyedInConflict(GameObject conflictedGameObject, params int[] coords)
 		{
 			return true;
 		}
@@ -28,11 +28,6 @@ namespace Digger.Mobs
 		public override bool IsSolidObject()
 		{
 			return false;
-		}
-
-		public new static PreparedObject FromJsonObject(JsonObjectCollection jsonObject)
-		{
-			return GameObject.FromJsonObject(jsonObject);
 		}
 	}
 }

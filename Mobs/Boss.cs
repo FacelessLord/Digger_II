@@ -35,7 +35,7 @@ namespace Digger.Mobs
 			return moving;
 		}
 
-		public override bool DestroyedInConflict(GameObject conflictedGameObject)
+		public override bool DestroyedInConflict(GameObject conflictedGameObject, params int[] coords)
 		{
             _isAlive = conflictedGameObject is Key || conflictedGameObject is Player || 
                      conflictedGameObject is Sack || conflictedGameObject is FakeSack;
@@ -67,11 +67,6 @@ namespace Digger.Mobs
 		public override string GetImageFileName()
 		{
 			return "Boss.png";
-		}
-
-		public new static PreparedObject FromJsonObject(JsonObjectCollection jsonObject)
-		{
-			return GameObject.FromJsonObject(jsonObject);
 		}
 	}
 }

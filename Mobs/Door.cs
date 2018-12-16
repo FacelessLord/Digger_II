@@ -11,7 +11,7 @@ namespace Digger.Mobs
 			return new CreatureCommand(0,0);
 		}
 
-		public override bool DestroyedInConflict(GameObject conflictedGameObject)
+		public override bool DestroyedInConflict(GameObject conflictedGameObject, params int[] coords)
 		{
 			if (conflictedGameObject is Key)
 			{
@@ -35,11 +35,6 @@ namespace Digger.Mobs
 		public override bool IsSolidObject()
 		{
 			return true;
-		}
-		
-		public new static PreparedObject FromJsonObject(JsonObjectCollection jsonObject)
-		{
-			return GameObject.FromJsonObject(jsonObject);
 		}
 	}
 }

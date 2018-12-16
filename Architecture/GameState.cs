@@ -23,9 +23,16 @@ namespace Digger
                 if (creature == null) continue;
                 var command = creature.Update(x, y);
 
-                if (x + command._deltaX < 0 || x + command._deltaX >= Game.MapWidth || y + command._deltaY < 0 ||
-                    y + command._deltaY >= Game.MapHeight)
-                    throw new Exception($"The object {creature.GetType()} falls out of the game field");
+                if (y + command._deltaY < 0 || y + command._deltaY >= Game.MapHeight)
+                {
+                    command._deltaY = 0;
+                }
+
+                if (x + command._deltaX < 0 || x + command._deltaX >= Game.MapWidth)
+                {
+                    command._deltaX = 0;
+                }
+                   // throw new Exception($"The object {creature.GetType()} falls out of the game field");
 
                 _animations.Add(
                     new CreatureAnimation
@@ -51,9 +58,14 @@ namespace Digger
             {
                 if (request._delay <= 0)
                 {
-                    if (Game._map[request._x, request._y] == null || request._forceSpawn)
+                    int tx = request._x;
+                    int ty = request._y;
+                    var vec = request._searchMethod(tx,ty);
+                    tx =(int) vec.X;
+                    ty = (int) vec.Y;
+                    if (Game._map[tx, ty] == null || request._forceSpawn)
                     {
-                        Game._map[request._x, request._y] = request._obj;
+                        Game._map[tx, ty] = request._obj;
                     }
                     removal.Add(request);
                 }
@@ -75,7 +87,7 @@ namespace Digger
             var aliveCandidates = candidates.ToList();
             foreach (var candidate in candidates)
             foreach (var rival in candidates)
-                if (rival != candidate && candidate.DestroyedInConflict(rival))
+                if (rival != candidate && candidate.DestroyedInConflict(rival,x,y))
                     aliveCandidates.Remove(candidate);
             if (aliveCandidates.Count > 1)
                 throw new Exception(

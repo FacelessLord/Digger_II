@@ -68,6 +68,8 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Architecture\Program.cs" />
+    <Compile Include="Mobs\Air.cs" />
+    <Compile Include="Mobs\BluePortal.cs" />
     <Compile Include="Mobs\Boss.cs" />
     <Compile Include="Mobs\Door.cs" />
     <Compile Include="Mobs\FakeSack.cs" />
@@ -76,6 +78,7 @@
     <Compile Include="Mobs\Gold.cs" />
     <Compile Include="Mobs\Key.cs" />
     <Compile Include="Mobs\Monster.cs" />
+    <Compile Include="Mobs\MonsterPortal.cs" />
     <Compile Include="Mobs\Player.cs" />
     <Compile Include="Mobs\Sack.cs" />
     <Compile Include="Mobs\Terrain.cs" />

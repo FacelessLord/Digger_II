@@ -39,16 +39,23 @@ namespace Digger.Mobs
 		{
 			int dx = (int) _direction.X;
 			int dy = (int) _direction.Y;
-			if (Game._map[x + dx, y + dy] == null || !Game._map[x + dx, y + dy].IsSolidObject())
+			try
 			{
-				CreatureCommand cc = new CreatureCommand(dx,dy,this);
-				return cc;
+				if (Game._map[x + dx, y + dy] == null || !Game._map[x + dx, y + dy].IsSolidObject())
+				{
+					CreatureCommand cc = new CreatureCommand(dx, dy, this);
+					return cc;
+				}
+			}
+			catch
+			{
+				// ignored
 			}
 
-			var request = new SpawnRequest(null, x,y,true);
+			var request = new SpawnRequest(null, x, y, true);
 			Game.RequestSpawn(request);
-			
-			return new CreatureCommand(0,0,new FireBlock());
+
+			return new CreatureCommand(0, 0, new FireBlock());
 		}
 
 		public override string GetImageFileName()
@@ -66,14 +73,9 @@ namespace Digger.Mobs
 			return false;
 		}
 
-		public override bool DestroyedInConflict(GameObject conflictedGameObject)
+		public override bool DestroyedInConflict(GameObject conflictedGameObject, params int[] coords)
 		{
 			return !(conflictedGameObject is FireBlock) && conflictedGameObject.IsSolidObject();
-		}
-
-		public new static PreparedObject FromJsonObject(JsonObjectCollection jsonObject)
-		{
-			return GameObject.FromJsonObject(jsonObject);
 		}
 	}
 }

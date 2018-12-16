@@ -11,7 +11,7 @@ namespace Digger.Architecture
 		public abstract string GetImageFileName();
 		public abstract int GetDrawingPriority();
 		public abstract bool IsSolidObject();
-		public abstract bool DestroyedInConflict(GameObject conflictedGameObject);
+		public abstract bool DestroyedInConflict(GameObject conflictedGameObject, params int[] coords);
 
 		public static PreparedObject FromJsonObject(JsonObjectCollection jsonObject)
 		{

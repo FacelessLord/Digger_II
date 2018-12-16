@@ -1,3 +1,5 @@
+using System.Windows;
+
 namespace Digger.Architecture
 {
 	public class SpawnRequest
@@ -24,6 +26,10 @@ namespace Digger.Architecture
 		/// Time(in ticks) after which request will be satisfied
 		/// </summary>
 		public int _delay = 0;
+		
+		public delegate Vector SearchMethod(int x,int y);
+
+		public SearchMethod _searchMethod = (x, y) => new Vector(x, y);
 
 		public SpawnRequest(GameObject obj, int x, int y)
 		{
@@ -38,6 +44,12 @@ namespace Digger.Architecture
 			_x = x;
 			_y = y;
 			_forceSpawn = forceSpawn;
+		}
+
+		public SpawnRequest SetSearchMethod(SearchMethod method)
+		{
+			this._searchMethod = method;
+			return this;
 		}
 
 		public void SetForceSpawn(bool forceSpawn)

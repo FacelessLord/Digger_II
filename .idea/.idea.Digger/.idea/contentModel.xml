@@ -24,6 +24,7 @@
       <e p="Game.cs" t="Include" />
       <e p="Images" t="Include">
         <e p=".directory" t="Include" />
+        <e p="BluePortal.png" t="Include" />
         <e p="Boss.png" t="Include" />
         <e p="ColdFireball.png" t="Include" />
         <e p="ColdFireblock.png" t="Include" />
@@ -39,6 +40,8 @@
         <e p="Key.png" t="Include" />
         <e p="Monster.png" t="Include" />
         <e p="Murloc.png" t="Include" />
+        <e p="OrangePortal.png" t="Include" />
+        <e p="Portal.png" t="Include" />
         <e p="Sack.png" t="Include" />
         <e p="Terrain.png" t="Include" />
         <e p="Turret.png" t="Include" />
@@ -49,6 +52,8 @@
         <e p="map.json" t="Include" />
       </e>
       <e p="Mobs" t="Include">
+        <e p="Air.cs" t="Include" />
+        <e p="BluePortal.cs" t="Include" />
         <e p="Boss.cs" t="Include" />
         <e p="Door.cs" t="Include" />
         <e p="FakeSack.cs" t="Include" />
@@ -57,6 +62,7 @@
         <e p="Gold.cs" t="Include" />
         <e p="Key.cs" t="Include" />
         <e p="Monster.cs" t="Include" />
+        <e p="MonsterPortal.cs" t="Include" />
         <e p="Player.cs" t="Include" />
         <e p="Sack.cs" t="Include" />
         <e p="Terrain.cs" t="Include" />

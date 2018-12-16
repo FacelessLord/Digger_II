@@ -89,7 +89,7 @@ namespace Digger.Architecture
 					}
 					else
 					{
-						throw new NullReferenceException();
+						gameObjects.Add(GameObject.FromJsonObject(o));
 					}
 				}
 			}

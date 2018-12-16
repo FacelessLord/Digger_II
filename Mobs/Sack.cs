@@ -45,7 +45,7 @@ namespace Digger.Mobs
 			return moving;
 		}
 
-		public override bool DestroyedInConflict(GameObject conflictedGameObject)
+		public override bool DestroyedInConflict(GameObject conflictedGameObject, params int[] coords)
 		{
 			return false;
 		}
@@ -53,11 +53,6 @@ namespace Digger.Mobs
 		public override bool IsSolidObject()
 		{
 			return true;
-		}
-
-		public new static PreparedObject FromJsonObject(JsonObjectCollection jsonObject)
-		{
-			return GameObject.FromJsonObject(jsonObject);
 		}
 	}
 }
