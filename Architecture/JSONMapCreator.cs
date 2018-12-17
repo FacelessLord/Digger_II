@@ -69,26 +69,31 @@ namespace Digger.Architecture
 						}
 					}
 
-					var type = Assembly
-						.GetExecutingAssembly()
-						.GetTypes()
-						.FirstOrDefault(z => z.Name == name);
+					if (name != "")
+					{
+						var type = Assembly
+							.GetExecutingAssembly()
+							.GetTypes()
+							.FirstOrDefault(z => z.Name == name);
 
-					if (type == null)
-					{
-						throw new Exception($"Can't find type '{name}'");
-					}
+						if (type == null)
+						{
+							throw new Exception($"Can't find type '{name}'");
+						}
 
-					var method = type.GetMethods().FirstOrDefault( m =>
-					{
-						return m.Name == "FromJsonObject";
-					});
-					if (method != null)
-					{
-						gameObjects.Add(method.Invoke(null, new object[] {o}) as PreparedObject);
+						var method = type.GetMethods().FirstOrDefault(m => { return m.Name == "FromJsonObject"; });
+						if (method != null)
+						{
+							gameObjects.Add(method.Invoke(null, new object[] {o}) as PreparedObject);
+						}
+						else
+						{
+							gameObjects.Add(GameObject.FromJsonObject(o));
+						}
 					}
 					else
 					{
+						o.Add(new JsonStringValue("type","Terrain"));
 						gameObjects.Add(GameObject.FromJsonObject(o));
 					}
 				}

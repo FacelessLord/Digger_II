@@ -8,10 +8,10 @@ namespace Digger.Mobs
 	{
 		public int _toX = 5;
 		public int _toY = 5;
-		
+
 		public override CreatureCommand Update(int x, int y)
 		{
-			return new CreatureCommand(0,0,this);
+			return new CreatureCommand(0, 0, this);
 		}
 
 		public override string GetImageFileName()
@@ -31,23 +31,37 @@ namespace Digger.Mobs
 
 		public override bool DestroyedInConflict(GameObject conflictedGameObject, params int[] coords)
 		{
-			var request = new SpawnRequest(conflictedGameObject,_toX,_toY).SetSearchMethod((x, y) =>
+			var request = new SpawnRequest(conflictedGameObject, _toX, _toY).SetSearchMethod((x, y) =>
 			{
 				int tx = x;
 				int ty = y;
-				while (Game._map[tx, ty] != null)
+				int r = 0;
+				while (r < 4)
 				{
-					tx++;
+					for (var dx = -r; dx <= r; dx++)
+					for (var dy = -r; dy <= r; dy++)
+					{
+						if (tx + dx >= 0 && tx + dx < Game.MapWidth && ty + dy >= 0 && ty + dy < Game.MapHeight)
+						{
+							if (Game._map[tx + dx, ty + dy] == null)
+							{
+								return new Vector(tx + dx, ty + dy);
+							}
+						}
+					}
+
+					r++;
 				}
-				return new Vector(tx,ty);
+
+				return new Vector(tx, ty);
 			});
 			Game.RequestSpawn(request);
-			Game.RequestSpawn(new SpawnRequest(null,coords[0],coords[1],true));
-			Game.RequestSpawn(new SpawnRequest(this,coords[0],coords[1]));
-			
+			Game.RequestSpawn(new SpawnRequest(null, coords[0], coords[1], true));
+			Game.RequestSpawn(new SpawnRequest(this, coords[0], coords[1]));
+
 			return true;
 		}
-		
+
 		public new static PreparedObject FromJsonObject(JsonObjectCollection jsonObject)
 		{
 			var po = GameObject.FromJsonObject(jsonObject);
@@ -57,16 +71,28 @@ namespace Digger.Mobs
 				{
 					if (n.Name == "toX")
 					{
-						((BluePortal)po._obj)._toX = (int) n.Value;
+						((BluePortal) po._obj)._toX = (int) n.Value;
 					}
+
 					if (n.Name == "toY")
 					{
-						((BluePortal)po._obj)._toY = (int) n.Value;
+						((BluePortal) po._obj)._toY = (int) n.Value;
+					}
+
+					if (n.Name == "toRX")
+					{
+						((BluePortal) po._obj)._toX = po._x + (int) n.Value;
+					}
+
+					if (n.Name == "toRY")
+					{
+						((BluePortal) po._obj)._toY = po._y + (int) n.Value;
 					}
 				}
 			}
+
 			return po;
 		}
-		
+
 	}
 }

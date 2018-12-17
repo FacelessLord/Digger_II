@@ -75,7 +75,7 @@ namespace Digger.Mobs
 
 		public override bool DestroyedInConflict(GameObject conflictedGameObject, params int[] coords)
 		{
-			return !(conflictedGameObject is FireBlock) && conflictedGameObject.IsSolidObject();
+			return true;
 		}
 	}
 }

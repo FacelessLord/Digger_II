@@ -8,7 +8,7 @@ namespace Digger.Mobs
 	public class Turret : GameObject
 	{
 		private int _timer = 0;
-		private int _speed = 3;
+		private int _frequency = 3;
 		public int _direction = 3;
 
 		public Turret()
@@ -23,7 +23,7 @@ namespace Digger.Mobs
 		public override CreatureCommand Update(int x, int y)
 		{
 			_timer++;
-			if (_timer % _speed == 0)
+			if (_timer % _frequency == 0)
 			{
 				var vec = DirectionHelper.GetVec(_direction);
 				var ballRequest = new SpawnRequest(new FireBall(_direction), (int) (x + vec.X), (int) (y + vec.Y));
@@ -57,6 +57,7 @@ namespace Digger.Mobs
 		{
 			var po = GameObject.FromJsonObject(jsonObject);
 			var dir = 3;
+			var freq = 3;
 			foreach (var obj in jsonObject)
 			{
 				if (obj is JsonNumericValue n)
@@ -65,10 +66,15 @@ namespace Digger.Mobs
 					{
 						dir = (int) n.Value;
 					}
+					if (n.Name == "frequency")
+					{
+						freq = (int) n.Value;
+					}
 				}
 			}
 
 			((Turret) po._obj)._direction = dir;
+			((Turret) po._obj)._frequency = freq;
 			return po;
 		}
 	}
