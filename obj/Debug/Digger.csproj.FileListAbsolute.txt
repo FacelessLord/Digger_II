@@ -38,7 +38,6 @@ C:/Users/w1jtoo/Desktop/digger.csproj/bin/Debug/nunit.framework.dll
 C:/Users/w1jtoo/Desktop/digger.csproj/obj/Debug/Digger.csprojResolveAssemblyReference.cache
 C:/Users/w1jtoo/Desktop/digger.csproj/obj/Debug/Digger.Properties.Resources.resources
 C:/Users/w1jtoo/Desktop/digger.csproj/obj/Debug/Digger.csproj.GenerateResource.Cache
-/home/lord_faceless/Desktop/MatMex/RiderProjects/Digger_II/bin/Debug/Images/Digger.png
 /home/lord_faceless/Desktop/MatMex/RiderProjects/Digger_II/bin/Debug/Images/Key.png
 /home/lord_faceless/Desktop/MatMex/RiderProjects/Digger_II/bin/Debug/Images/Wall.png
 /home/lord_faceless/Desktop/MatMex/RiderProjects/Digger_II/bin/Debug/Images/DoorClose.png
@@ -98,3 +97,7 @@ C:/Users/w1jtoo/Documents/GitHub/Digger_II/obj/Debug/Digger.csproj.GenerateResou
 /home/lord_faceless/Desktop/MatMex/RiderProjects/Digger_II/bin/Debug/Images/Portal.png
 /home/lord_faceless/Desktop/MatMex/RiderProjects/Digger_II/bin/Debug/Images/BluePortal.png
 /home/lord_faceless/Desktop/MatMex/RiderProjects/Digger_II/bin/Debug/Images/OrangePortal.png
+/home/lord_faceless/Desktop/MatMex/RiderProjects/Digger_II/bin/Debug/Images/OldDigger.png
+/home/lord_faceless/Desktop/MatMex/RiderProjects/Digger_II/bin/Debug/Images/OldWall.png
+/home/lord_faceless/Desktop/MatMex/RiderProjects/Digger_II/bin/Debug/Images/Specter.png
+/home/lord_faceless/Desktop/MatMex/RiderProjects/Digger_II/bin/Debug/Images/Woods.png

@@ -18,7 +18,7 @@ namespace Digger.Mobs
 
 		public override string GetImageFileName()
 		{
-			return "Speccter.png";
+			return "Specter.png";
 		}
 
 		public override CreatureCommand Update(int x, int y)

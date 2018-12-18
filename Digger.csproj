@@ -53,6 +53,7 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Architecture\Chunk.cs" />
     <Compile Include="Architecture\CreatureCommand.cs" />
     <Compile Include="Architecture\Direction.cs" />
     <Compile Include="Architecture\GameState.cs" />
@@ -84,6 +85,7 @@
     <Compile Include="Mobs\Terrain.cs" />
     <Compile Include="Mobs\Turret.cs" />
     <Compile Include="Mobs\Wall.cs" />
+    <Compile Include="Mobs\Woods.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

@@ -41,7 +41,8 @@ namespace Digger.Mobs
 			int dy = (int) _direction.Y;
 			try
 			{
-				if (Game._map[x + dx, y + dy] == null || !Game._map[x + dx, y + dy].IsSolidObject())
+				if (Game._map[x + dx, y + dy] == null ||
+				    !Game._map[x + dx, y + dy].IsSolidObject() || Game._map[x + dx, y + dy].IsFlammable(this))
 				{
 					CreatureCommand cc = new CreatureCommand(dx, dy, this);
 					return cc;

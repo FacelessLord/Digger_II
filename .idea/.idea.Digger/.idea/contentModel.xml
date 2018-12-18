@@ -7,6 +7,7 @@
     <e p="$PROJECT_DIR$" t="IncludeRecursive">
       <e p="App.config" t="Include" />
       <e p="Architecture" t="Include">
+        <e p="Chunk.cs" t="Include" />
         <e p="CreatureAnimation.cs" t="Include" />
         <e p="CreatureCommand.cs" t="Include" />
         <e p="CreatureMapCreator.cs" t="Include" />
@@ -28,7 +29,6 @@
         <e p="Boss.png" t="Include" />
         <e p="ColdFireball.png" t="Include" />
         <e p="ColdFireblock.png" t="Include" />
-        <e p="Digger.png" t="Include" />
         <e p="DoorClose.png" t="Include" />
         <e p="FakeSack.png" t="Include" />
         <e p="Fireball_0.png" t="Include" />
@@ -40,12 +40,16 @@
         <e p="Key.png" t="Include" />
         <e p="Monster.png" t="Include" />
         <e p="Murloc.png" t="Include" />
+        <e p="OldDigger.png" t="Include" />
+        <e p="OldWall.png" t="Include" />
         <e p="OrangePortal.png" t="Include" />
         <e p="Portal.png" t="Include" />
         <e p="Sack.png" t="Include" />
+        <e p="Specter.png" t="Include" />
         <e p="Terrain.png" t="Include" />
         <e p="Turret.png" t="Include" />
         <e p="Wall.png" t="Include" />
+        <e p="Woods.png" t="Include" />
         <e p="tenor.gif" t="Include" />
       </e>
       <e p="Maps" t="Include">
@@ -68,6 +72,7 @@
         <e p="Terrain.cs" t="Include" />
         <e p="Turret.cs" t="Include" />
         <e p="Wall.cs" t="Include" />
+        <e p="Woods.cs" t="Include" />
       </e>
       <e p="Properties" t="Include">
         <e p="AssemblyInfo.cs" t="Include" />

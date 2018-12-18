@@ -50,7 +50,7 @@ namespace Digger.Mobs
 			return conflictedGameObject is Sack || conflictedGameObject is Monster ||
 			       conflictedGameObject is FakeSack ||
 			       conflictedGameObject is FireBlock || conflictedGameObject is FireBall ||
-			       conflictedGameObject is Key;
+			       conflictedGameObject is Key || conflictedGameObject.IsSolidObject();
 		}
 
 		public override int GetDrawingPriority()
