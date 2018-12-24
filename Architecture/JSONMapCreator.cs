@@ -8,7 +8,20 @@ using Digger.Mobs;
 
 namespace Digger.Architecture
 {
-	public class JsonMapCreator
+	/// <summary>
+	/// <para>Class that enables you to create maps from JsonFile.</para>
+	/// <para>You capable of specifying Object coordinates, type and other properties,
+	/// determined by the object you want to create (ex: Turret have field "direction" and "frequency").</para>
+	/// <para>You can also create blocks of similar type and specify their properties like this:
+	/// "chunk" (any case) : { "x":_x, "y":_y, "width":_width, "height":_height, "type":_type, properties of an object}.
+	/// There values that starts with "_" are actual values.
+	/// "type" - is a ClassName for an object you want to create</para>
+	///
+	/// <para>Map file is a common Json file.
+	/// It should contain at least 2 fields: width and height of the map.
+	/// You can also specify, whether the map have wall on the edge by value of "walls" : true of false.</para>
+	/// </summary>
+	public static class JsonMapCreator
 	{
 		public static GameObject[,] CreateMap(string mapFile)
 		{
@@ -21,7 +34,8 @@ namespace Digger.Architecture
 			var walls = true;
 
 			var gameObjects = new List<PreparedObject>();
-
+			var chunks = new List<Chunk>();
+			
 			foreach (var jsonObj in mainCollection)
 			{
 				if (jsonObj is JsonNumericValue n)
@@ -58,6 +72,10 @@ namespace Digger.Architecture
 				if (jsonObj is JsonObjectCollection o)
 				{
 					var name = "";
+					if (o.Name.ToLower() == "chunk")
+					{
+						chunks.Add(new Chunk(o));
+					}
 					foreach (var field in o)
 					{
 						if (field is JsonStringValue s)
@@ -105,7 +123,7 @@ namespace Digger.Architecture
 			}
 
 			var map = new GameObject[height,width];
-
+			
 			if (walls)
 			{
 				for (var i = 0; i < width; i++)
@@ -118,6 +136,12 @@ namespace Digger.Architecture
 					map[i,0] = new Wall();
 					map[i,width-1] = new Wall();
 				}
+			}
+
+			for (int i = 0; i < chunks.Count; i++)
+			{
+				var chunk = chunks[i];
+				map = chunk.Print(map);
 			}
 			foreach (var prepObj in gameObjects)
 			{

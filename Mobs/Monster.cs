@@ -13,10 +13,10 @@ namespace Digger.Mobs
 
 		public override CreatureCommand Update(int x, int y)
 		{
-			var moving = new CreatureCommand(0,0);
+			var moving = new CreatureCommand(0, 0);
 			if (_time % 3 == 0)
 			{
-				if ((_map[x + 1, y] == null || _map[x + 1, y] is Player) && _way == "left")
+				if ((_map[x + 1, y] == null || !_map[x + 1, y].IsSolidObject()) && _way == "left")
 				{
 					moving._deltaX++;
 					_way = "left";
@@ -24,18 +24,16 @@ namespace Digger.Mobs
 				}
 				else _way = "right"; // - заменить
 
-				if ((_map[x - 1, y] == null || _map[x - 1, y] is Player) && _way == "right")
+				if ((_map[x - 1, y] == null || !_map[x - 1, y].IsSolidObject()) && _way == "right")
 				{
 					moving._deltaX--;
 					_way = "right";
 				}
 				else _way = "left"; // - заменить
 
-				if (_map[x + moving._deltaX, y + moving._deltaY] is Monster ||
-				    (_map[x + moving._deltaX, y] != null
-				     && !(_map[x + moving._deltaX, y + moving._deltaY] is Gold)
-				     && !(_map[x + moving._deltaX, y + moving._deltaY] is Monster)
-				     && !(_map[x + moving._deltaX, y + moving._deltaY] is Player)))
+				if
+				(_map[x + moving._deltaX, y] != null
+				 && (_map[x + moving._deltaX, y + moving._deltaY].IsSolidObject()))
 				{
 					moving._deltaX = 0;
 				}

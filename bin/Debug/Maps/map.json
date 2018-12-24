@@ -9,11 +9,8 @@
   "turret_dl":{"type":"Turret","x":1,"y":19,"direction":0,"frequency":1},
   "key":{"type":"Key","x":10,"y":10},
   "mportal":{"type":"MonsterPortal","x":10,"y":10},
-  "w": {"type": "Wall", "x":  7,"y": 7},
-  "w": {"type": "Wall", "x":  8,"y": 7},
-  "w": {"type": "Wall", "x":  7,"y": 9},
-  "w": {"type": "Wall", "x":  9,"y": 7},
-  "w": {"type": "Wall", "x":  7,"y": 8},
+  "chunk": {"x": 7,"y": 7,"width": 3,"height": 1, "type": "Wall"},
+  "chunk": {"x": 7,"y": 7,"width": 1,"height": 3, "type": "Wall"},
   "w": {"type": "Wall", "x":  13,"y": 13},
   "w": {"type": "Wall", "x":  11,"y": 13},
   "w": {"type": "Wall", "x":  12,"y": 13},
@@ -32,5 +29,9 @@
   "d": {"type": "Door","x": 7,"y": 10},
   "d": {"type": "Door","x": 13,"y": 10},
   "d": {"type": "Door","x": 10,"y": 13},
-  "d": {"type": "Door","x": 10,"y": 7}
+  "d": {"type": "Door","x": 10,"y": 7},
+  "k": {"type": "Key","x": 6,"y":10},
+  "k": {"type": "Key","x": 14,"y":10},
+  "k": {"type": "Key","x": 10,"y":6},
+  "k": {"type": "Key","x": 10,"y":14}
 } 
