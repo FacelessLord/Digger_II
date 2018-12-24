@@ -24,7 +24,7 @@ namespace Digger.Mobs
 		public override CreatureCommand Update(int x, int y)
 		{
 
-			var moving = new CreatureCommand(0,0);
+			var moving = new CreatureCommand(0, 0);
 			switch (_keyPressed)
 			{
 				case Keys.Up:
@@ -70,8 +70,15 @@ namespace Digger.Mobs
 
 		public override bool DestroyedInConflict(GameObject conflictedGameObject, params int[] coords)
 		{
-			bool result = conflictedGameObject is Sack || conflictedGameObject is Monster || conflictedGameObject is FakeSack || conflictedGameObject is FireBall || conflictedGameObject is FireBlock;
-			if (result) Game._isOver = true; //game is over 
+			bool result = conflictedGameObject is Sack || conflictedGameObject is Monster ||
+			              conflictedGameObject is FakeSack || conflictedGameObject is FireBall ||
+			              conflictedGameObject is FireBlock;
+			if (result)
+			{
+				_isOver = true;
+				//game is over
+			}
+
 			return result;
 		}
 

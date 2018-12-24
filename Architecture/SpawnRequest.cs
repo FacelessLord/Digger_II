@@ -52,13 +52,15 @@ namespace Digger.Architecture
 			return this;
 		}
 
-		public void SetForceSpawn(bool forceSpawn)
+		public SpawnRequest SetForceSpawn(bool forceSpawn)
 		{
 			_forceSpawn = forceSpawn;
+			return this;
 		}
-		public void SetDelay(int delay)
+		public SpawnRequest SetDelay(int delay)
 		{
 			_delay = delay;
+			return this;
 		}
 
 		public override string ToString()

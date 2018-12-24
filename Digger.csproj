@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Digger</RootNamespace>
     <AssemblyName>11-digger</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -59,8 +59,10 @@
     <Compile Include="Architecture\GameState.cs" />
     <Compile Include="Architecture\CreatureMapCreator.cs" />
     <Compile Include="Architecture\GameObject.cs" />
+    <Compile Include="Architecture\IMovable.cs" />
     <Compile Include="Architecture\JSONMapCreator.cs" />
     <Compile Include="Architecture\PreparedObject.cs" />
+    <Compile Include="Architecture\RespawnSystem.cs" />
     <Compile Include="Architecture\SpawnRequest.cs" />
     <Compile Include="Game.cs" />
     <Compile Include="Architecture\ILiving.cs" />

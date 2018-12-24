@@ -10,15 +10,16 @@ namespace Digger
     public class DiggerWindow : Form
     {
         private readonly Dictionary<string, Bitmap> _bitmaps = new Dictionary<string, Bitmap>();
-        private readonly GameState _gameState;
-        private readonly HashSet<Keys> _pressedKeys = new HashSet<Keys>();
+        public GameState _gameState;
+        public readonly HashSet<Keys> _pressedKeys = new HashSet<Keys>();
         private int _tickCount;
 
-        
+
         public DiggerWindow(DirectoryInfo imagesDirectory = null)
         {
             _gameState = new GameState();
             Game._state = _gameState;
+            Game._window = this;
             ClientSize = new Size(
                 GameState.ElementSize * Game.MapWidth,
                 GameState.ElementSize * Game.MapHeight + GameState.ElementSize);
@@ -31,8 +32,9 @@ namespace Digger
                 if (e.ToString() == "*.gif") // я пытался ("отрисовка" анимаций)
                     ImageAnimator.Animate(Image.FromFile(e.FullName), OnFrameChanged);
                 else
-                    _bitmaps[e.Name] = (Bitmap)Image.FromFile(e.FullName);
+                    _bitmaps[e.Name] = (Bitmap) Image.FromFile(e.FullName);
             }
+
             var timer = new Timer();
             var timer1 = new Timer();
             timer.Interval = 15; //таймер тиков 
@@ -48,6 +50,7 @@ namespace Digger
         {
             Invalidate();
         }
+
         protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
@@ -74,18 +77,20 @@ namespace Digger
                 Brushes.Black, 0, 0, GameState.ElementSize * Game.MapWidth,
                 GameState.ElementSize * Game.MapHeight);
             foreach (var a in _gameState._animations)
-                if(a._creature.GetImageFileName() != null)
+                if (a._creature.GetImageFileName() != null)
                     e.Graphics.DrawImage(_bitmaps[a._creature.GetImageFileName()], a._location);
             e.Graphics.ResetTransform();
             e.Graphics.DrawString("Score " + Game._scores.ToString(), new Font("Arial", 16), Brushes.Blue, 0, 0);
             e.Graphics.DrawString("Time " + Game._gameTime, new Font("Arial", 16), Brushes.Red, 150, 0);
             if (Game._isOver)
-                e.Graphics.DrawString("Game Over", new Font("Georgia", 32), Brushes.SteelBlue, Width / 2 - 125, Height / 2 - 70);
+                e.Graphics.DrawString("Game Over", new Font("Georgia", 32), Brushes.SteelBlue, Width / 2 - 125,
+                    Height / 2 - 70);
         }
 
         private void TimerTick(object sender, EventArgs args)
         {
-            if (_tickCount == 0) _gameState.BeginAct(); 
+            
+            if (_tickCount == 0) _gameState.BeginAct();
             foreach (var e in _gameState._animations)
                 e._location = new Point(e._location.X + 4 * e._command._deltaX, e._location.Y + 4 * e._command._deltaY);
             if (_tickCount == 7)
@@ -100,11 +105,10 @@ namespace Digger
             if (!Game._isOver)
             {
                 Game._time++;
-                Game._gameTime = String.Format("{0:d2}:{1:d2}:{2:d2}", Game._time / 3600, (Game._time / 60) % 60, Game._time % 60);
+                Game._gameTime = $"{Game._time / 3600:d2}:{(Game._time / 60) % 60:d2}:{Game._time % 60:d2}";
             }
-            else Game._time = -1;
-
+            else 
+                Game._time = -1;
         }
-
     }
 }

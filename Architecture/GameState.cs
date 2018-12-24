@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using System.Windows.Forms;
 using Digger.Architecture;
 
 namespace Digger
@@ -12,6 +13,8 @@ namespace Digger
         public List<CreatureAnimation> _animations = new List<CreatureAnimation>();
 
         public List<SpawnRequest> _spawnRequests = new List<SpawnRequest>();
+
+        public bool _respawning = false;
         
         public void BeginAct()
         {
@@ -50,9 +53,33 @@ namespace Digger
         public void EndAct()
         {
             var creaturesPerLocation = GetCandidatesPerLocation();
-            for (var x = 0; x < Game.MapWidth; x++)
-            for (var y = 0; y < Game.MapHeight; y++)
-                Game._map[x, y] = SelectWinnerCandidatePerLocation(creaturesPerLocation, x, y);
+            if (!_respawning)
+            {
+                for (var x = 0; x < Game.MapWidth; x++)
+                for (var y = 0; y < Game.MapHeight; y++)
+                    Game._map[x, y] = SelectWinnerCandidatePerLocation(creaturesPerLocation, x, y);
+            }
+            else
+            {
+                _respawning = false;
+            }
+
+            if (Game._isOver)
+            {
+                var respResult = MessageBox.Show(Game._window, "Do you wish to respawn?",
+                    "Respawn", MessageBoxButtons.OK);
+                if (respResult == DialogResult.OK)
+                {
+                    RespawnSystem.CallRespawn();
+                }
+            }
+
+            SpawnRequestedObjects();
+        }
+
+        public void SpawnRequestedObjects()
+        {
+            
             var removal = new List<SpawnRequest>();
             foreach (var request in _spawnRequests)
             {

@@ -125,10 +125,6 @@ namespace Digger.Architecture
 			}
 
 			return map;
-			/*foreach (var t in mainCollection)
-			{
-				Console.WriteLine(t+"|"+t.GetType());
-			}*/
 		}
 	}
 }

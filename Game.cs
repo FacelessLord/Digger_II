@@ -65,16 +65,24 @@ WWWWWWWWWWWWWWWWW";
 		public static int MapWidth => _map.GetLength(0);
 		public static int MapHeight => _map.GetLength(1);
 		public static GameState _state;
+		public static DiggerWindow _window;
+
+		public static string _mapName = "Maps/map.json";
 
 		public static void CreateMap()
 		{
 //			_map = CreatureMapCreator.CreateMap(NullMap);
-			_map = JsonMapCreator.CreateMap("Maps/map.json");
+			_map = JsonMapCreator.CreateMap(_mapName);
 		}
 
 		public static void RequestSpawn(SpawnRequest request)
 		{
 			_state._spawnRequests.Add(request);
+		}
+		
+		public static void SpawnRequestedObjects()
+		{
+			_state.SpawnRequestedObjects();
 		}
 	}
 }
