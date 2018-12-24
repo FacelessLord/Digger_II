@@ -79,7 +79,6 @@ namespace Digger
             foreach (var a in _gameState._animations)
                 if (a._creature.GetImageFileName() != null)
                 {
-                    
                     e.Graphics.DrawImage(_bitmaps[a._creature.GetImageFileName()], a._location);
                 }
 

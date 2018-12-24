@@ -27,6 +27,8 @@
 
   "chunk": {"x": 7,"y": 13,"width": 3,"height": 1, "type": "Wall"},
   "chunk": {"x": 7,"y": 13,"width": 1,"height": -3, "type": "Wall"},
+
+  "wd": {"type": "Woods","x": 5,"y": 10},
   
   "d": {"type": "Door","x": 7,"y": 10},
   "d": {"type": "Door","x": 13,"y": 10},
