@@ -14,27 +14,27 @@ namespace Digger.Mobs
         {
             var moving = new CreatureCommand(0, 0);
 
-            if (_map[x + 1, y] is Player || _map[x - 1, y] is Player ||
-                _map[x, y + 1] is Player || _map[x, y - 1] is Player)
-                switch (_keyPressed)
-                {
-                    case Keys.Up:
-                        if (y >= 0)
-                            moving._deltaY--;
-                        break;
-                    case Keys.Down:
-                        if (y <= MapHeight)
-                            moving._deltaY++;
-                        break;
-                    case Keys.Right:
-                        if (x <= MapWidth)
-                            moving._deltaX++;
-                        break;
-                    case Keys.Left:
-                        if (x >= 0)
-                            moving._deltaX--;
-                        break;
-                }
+            if ((Game._map[x + 1, y] is Player ||Game. _map[x - 1, y] is Player ||
+                 Game._map[x, y + 1] is Player || Game._map[x, y - 1] is Player) && !Game._shift )
+            switch (Game._keyPressed)
+            {
+                case Keys.Up:
+                    if (y >= 0)
+                        moving._deltaY--;
+                    break;
+                case Keys.Down:
+                    if (y <= Game.MapHeight)
+                        moving._deltaY++;
+                    break;
+                case Keys.Right:
+                    if (x <= Game.MapWidth)
+                        moving._deltaX++;
+                    break;
+                case Keys.Left:
+                    if (x >= 0)
+                        moving._deltaX--;
+                    break;
+            }
             if (x + moving._deltaX >= MapWidth || x + moving._deltaX < 0)
                 moving._deltaX = 0;
             if (y + moving._deltaY >= MapHeight || y + moving._deltaY < 0)
@@ -69,6 +69,11 @@ namespace Digger.Mobs
         }
 
         public override bool IsSolidObject()
+        {
+            return true;
+        }
+
+        public override bool CanBeTaken()
         {
             return true;
         }

@@ -13,7 +13,12 @@ namespace Digger.Architecture
 		public abstract int GetDrawingPriority();
 		public abstract bool IsSolidObject();
 
-		public bool IsFlammable(GameObject fireSource)
+		public virtual bool CanBeTaken()
+		{
+			return false;
+		}
+
+		public virtual bool IsFlammable(GameObject fireSource)
 		{
 			return false;
 		}

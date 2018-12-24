@@ -4,6 +4,8 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
+using Digger.Architecture;
+using Digger.Mobs;
 
 namespace Digger
 {
@@ -62,6 +64,7 @@ namespace Digger
         {
             _pressedKeys.Add(e.KeyCode);
             Game._keyPressed = e.KeyCode;
+            Game._player.OnKeyPressed(e);
         }
 
         protected override void OnKeyUp(KeyEventArgs e)
@@ -92,10 +95,15 @@ namespace Digger
 
         private void TimerTick(object sender, EventArgs args)
         {
-            
-            if (_tickCount == 0) _gameState.BeginAct();
+
+            if (_tickCount == 0)
+            {
+                _gameState.BeginAct();
+            }
+
             foreach (var e in _gameState._animations)
                 e._location = new Point(e._location.X + 4 * e._command._deltaX, e._location.Y + 4 * e._command._deltaY);
+
             if (_tickCount == 7)
                 _gameState.EndAct();
             _tickCount++;
@@ -110,7 +118,7 @@ namespace Digger
                 Game._time++;
                 Game._gameTime = $"{Game._time / 3600:d2}:{(Game._time / 60) % 60:d2}:{Game._time % 60:d2}";
             }
-            else 
+            else
                 Game._time = -1;
         }
     }

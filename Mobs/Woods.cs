@@ -1,3 +1,4 @@
+using System;
 using System.Windows.Forms;
 using Digger.Architecture;
 
@@ -9,8 +10,8 @@ namespace Digger.Mobs
 		{
 			var moving = new CreatureCommand(0, 0);
 
-			if (Game._map[x + 1, y] is Player ||Game. _map[x - 1, y] is Player ||
-			    Game._map[x, y + 1] is Player || Game._map[x, y - 1] is Player)
+			if ((Game._map[x + 1, y] is Player ||Game. _map[x - 1, y] is Player ||
+			    Game._map[x, y + 1] is Player || Game._map[x, y - 1] is Player) && !Game._shift )
 				switch (Game._keyPressed)
 				{
 					case Keys.Up:
@@ -64,7 +65,12 @@ namespace Digger.Mobs
 			return conflictedGameObject is FireBall;
 		}
 
-		public new bool IsFlammable(GameObject fireSource)
+		public override bool IsFlammable(GameObject fireSource)
+		{
+			return true;
+		}
+		
+		public override bool CanBeTaken()
 		{
 			return true;
 		}

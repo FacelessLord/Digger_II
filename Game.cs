@@ -1,5 +1,6 @@
 ﻿using System.Windows.Forms;
 using Digger.Architecture;
+using Digger.Mobs;
 
 namespace Digger
 {
@@ -12,6 +13,9 @@ namespace Digger
 		public static bool _isOver;
 		public static int _locX; //Player Х
 		public static int _locY; //Player Y
+		public static Player _player;
+		public static bool _shift = false;
+		public static bool _alt = false;
 
 		public static Keys _keyPressed; //Holds the value of last pressed key
 		public static int MapWidth => _map.GetLength(0);

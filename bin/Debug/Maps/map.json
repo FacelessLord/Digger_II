@@ -2,7 +2,7 @@
   "width":21,
   "height":21,
   "walls":true,
-  "player":{"type":"Player","x":4,"y":5},
+  "player":{"type":"Player","x":4,"y":10},
   "turret_ul":{"type":"Turret","x":1,"y":1,"direction":1,"frequency":1},
   "turret_ur":{"type":"Turret","x":19,"y":1,"direction":2,"frequency":1},
   "turret_dr":{"type":"Turret","x":19,"y":19,"direction":3,"frequency":1},
@@ -29,6 +29,9 @@
   "chunk": {"x": 7,"y": 13,"width": 1,"height": -3, "type": "Wall"},
 
   "wd": {"type": "Woods","x": 5,"y": 10},
+  "wd": {"type": "Woods","x": 15,"y": 10},
+  "wd": {"type": "Woods","x": 10,"y": 15},
+  "wd": {"type": "Woods","x": 10,"y": 5},
   
   "d": {"type": "Door","x": 7,"y": 10},
   "d": {"type": "Door","x": 13,"y": 10},
