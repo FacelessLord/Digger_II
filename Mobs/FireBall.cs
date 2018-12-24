@@ -4,7 +4,7 @@ using Digger.Architecture;
 
 namespace Digger.Mobs
 {
-	public class FireBall : GameObject
+	public class FireBall : GameObject,IFieryObject
 	{
 		public Vector _direction;
 		private int _dirIndex;
@@ -75,6 +75,11 @@ namespace Digger.Mobs
 		}
 
 		public override bool DestroyedInConflict(GameObject conflictedGameObject, params int[] coords)
+		{
+			return true;
+		}
+
+		public bool DestroyedWhenCollideWith(GameObject obj)
 		{
 			return true;
 		}

@@ -59,6 +59,7 @@
     <Compile Include="Architecture\GameState.cs" />
     <Compile Include="Architecture\CreatureMapCreator.cs" />
     <Compile Include="Architecture\GameObject.cs" />
+    <Compile Include="Architecture\IFieryObject.cs" />
     <Compile Include="Architecture\IMovable.cs" />
     <Compile Include="Architecture\JSONMapCreator.cs" />
     <Compile Include="Architecture\PreparedObject.cs" />

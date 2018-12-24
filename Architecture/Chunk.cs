@@ -51,13 +51,13 @@ namespace Digger.Architecture
 
 				if (_width < 0)
 				{
-					_x -= _width;
+					_x += _width;
 					_width *= -1;
 				}
 
 				if (_height < 0)
 				{
-					_y -= _height;
+					_y += _height;
 					_height *= -1;
 				}
 
@@ -77,7 +77,7 @@ namespace Digger.Architecture
 		{
 			for (var i = 0; i < _width; i++)
 			for (var j = 0; j < _height; j++)
-				map[_x + j, _y + i] = CreateObject()._obj;
+				map[ _y + j,_x + i] = CreateObject()._obj;
 			return map;
 		}
 
