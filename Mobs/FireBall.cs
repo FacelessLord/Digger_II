@@ -7,29 +7,6 @@ namespace Digger.Mobs
 	public class FireBall : Throwable,IFieryObject
 	{
 
-		public int DirIndex
-		{
-			get => _dirIndex;
-			set
-			{
-				_dirIndex = value;
-				_direction = DirectionHelper.GetVec(value);
-			}
-		}
-
-		public override CreatureCommand Update(int x, int y)
-		{
-			var command =  base.Update(x, y);
-
-			if (command._deltaX == 0 && command._deltaY == 0)
-			{
-				var request = new SpawnRequest(null, x, y, true);
-				Game.RequestSpawn(request);
-			}
-
-			return command;
-		}
-
 		public FireBall()
 		{
 			_direction = new Vector(-1,0);

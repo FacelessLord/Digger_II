@@ -39,6 +39,7 @@ namespace Digger.Mobs
 			if (Game._map[x + command._deltaX, y + command._deltaY] is Gold)
 			{
 				command = new CreatureCommand(0,0);
+				DirIndex = -1;
 			}
 			
 			return command;

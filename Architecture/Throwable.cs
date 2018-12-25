@@ -22,9 +22,18 @@ namespace Digger.Architecture
             _direction = DirectionHelper.GetVec(direction);
         }
         
+        public int DirIndex
+        {
+            get => _dirIndex;
+            set
+            {
+                _dirIndex = value;
+                _direction = DirectionHelper.GetVec(value);
+            }
+        }
         
-        public Vector _direction;
-        public int _dirIndex;
+        protected Vector _direction;
+        protected int _dirIndex;
         
         public override CreatureCommand Update(int x, int y)
         {
