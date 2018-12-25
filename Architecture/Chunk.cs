@@ -6,16 +6,16 @@ using System.Windows.Forms;
 
 namespace Digger.Architecture
 {
-	public class Chunk
+	public abstract class Chunk
 	{
-		private readonly int _x;
-		private readonly int _y;
+		public readonly int _x;
+		public readonly int _y;
 
-		private readonly int _width = 1;
-		private readonly int _height = 1;
+		public readonly int _width = 1;
+		public readonly int _height = 1;
 
-		private readonly string _type = "Terrain";
-		private readonly JsonObjectCollection _collection;
+		public readonly string _type = "Terrain";
+		public readonly JsonObjectCollection _collection;
 
 		public Chunk(JsonObjectCollection collection)
 		{
@@ -73,35 +73,6 @@ namespace Digger.Architecture
 			_collection = collection;
 		}
 
-		public GameObject[,] Print(GameObject[,] map)
-		{
-			for (var i = 0; i < _width; i++)
-			for (var j = 0; j < _height; j++)
-				map[ _y + j,_x + i] = CreateObject()._obj;
-			return map;
-		}
-
-		public PreparedObject CreateObject()
-		{
-			var type = Assembly
-				.GetExecutingAssembly()
-				.GetTypes()
-				.FirstOrDefault(z => z.Name == _type);
-
-			if (type == null)
-			{
-				throw new Exception($"Can't find type '{_type}'");
-			}
-
-			var method = type.GetMethods().FirstOrDefault(m => m.Name == "FromJsonObject");
-			if (method != null)
-			{
-				return (PreparedObject) method.Invoke(null, new object[] {_collection});
-			}
-			else
-			{
-				return GameObject.FromJsonObject(_collection);
-			}
-		}
+		public abstract GameObject[,] Print(GameObject[,] map);
 	}
 }

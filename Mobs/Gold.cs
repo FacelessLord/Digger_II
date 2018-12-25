@@ -12,22 +12,7 @@ namespace Digger.Mobs
 
 		public override CreatureCommand Update(int x, int y)
 		{
-			var moving = new CreatureCommand(0, 0);
-			if (y + 1 < MapHeight && (_map[x, y + 1] == null
-			                          || (_map[x, y + 1] is Player
-			                              || _map[x, y + 1] is Monster) || _isFalling))
-			{
-				moving._deltaY++;
-				_isFalling = true;
-			}
-
-			if (y + 1 == MapHeight && _map[x, 0] == null && _isFalling)
-				moving._deltaY--;
-			if (y + 1 < MapHeight && (_map[x, y + 1] is Terrain || _map[x, y + 1] is Sack) || _map[x, y + 1] is Gold)
-				_isFalling = false;
-			else _isFalling = false;
-
-			return moving;
+			return new CreatureCommand(0, 0);
 		}
 
 

@@ -17,6 +17,11 @@ namespace Digger.Architecture
 		{
 			return false;
 		}
+		
+		public virtual bool CanBePlaced(int x,int y)
+		{
+			return Game._map[x,y]==null;
+		}
 
 		public virtual bool IsFlammable(GameObject fireSource)
 		{

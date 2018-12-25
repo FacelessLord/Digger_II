@@ -140,9 +140,10 @@ namespace Digger.Mobs
 					}
 					else
 					{
-						if (Game._map[x + dx, y + dy] == null)
+						if (_inventory.CanBePlaced(x + dx, y + dy))
 						{
-							var req = new SpawnRequest(_inventory, x + dx, y + dy);
+							var req = new SpawnRequest(_inventory, x + dx, y + dy,
+								_inventory.CanBePlaced(x + dx, y + dy));
 							Game.RequestSpawn(req);
 							//_map[x + dx, y + dy] = _inventory;
 							_inventory = null;

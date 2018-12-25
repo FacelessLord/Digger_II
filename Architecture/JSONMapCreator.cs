@@ -13,7 +13,7 @@ namespace Digger.Architecture
 	/// <para>You capable of specifying Object coordinates, type and other properties,
 	/// determined by the object you want to create (ex: Turret have field "direction" and "frequency").</para>
 	/// <para>You can also create blocks of similar type and specify their properties like this:
-	/// "chunk" (any case) : { "x":_x, "y":_y, "width":_width, "height":_height, "type":_type, properties of an object}.
+	/// "rect,box" (any case) : { "x":_x, "y":_y, "width":_width, "height":_height, "type":_type, properties of an object}.
 	/// There values that starts with "_" are actual values.
 	/// "type" - is a ClassName for an object you want to create</para>
 	///
@@ -33,9 +33,8 @@ namespace Digger.Architecture
 			var height = -1;
 			var walls = true;
 
-			var gameObjects = new List<PreparedObject>();
-			var chunks = new List<Chunk>();
-			
+			var gameObjects = new List<Object>();
+
 			foreach (var jsonObj in mainCollection)
 			{
 				if (jsonObj is JsonNumericValue n)
@@ -72,10 +71,18 @@ namespace Digger.Architecture
 				if (jsonObj is JsonObjectCollection o)
 				{
 					var name = "";
-					if (o.Name.ToLower() == "chunk")
+					if (o.Name.ToLower() == "rect")
 					{
-						chunks.Add(new Chunk(o));
+						gameObjects.Add(new Rectangle(o));
+						continue;
 					}
+
+					if (o.Name.ToLower() == "box")
+					{
+						gameObjects.Add(new Box(o));
+						continue;
+					}
+
 					foreach (var field in o)
 					{
 						if (field is JsonStringValue s)
@@ -99,19 +106,11 @@ namespace Digger.Architecture
 							throw new Exception($"Can't find type '{name}'");
 						}
 
-						var method = type.GetMethods().FirstOrDefault(m => { return m.Name == "FromJsonObject"; });
-						if (method != null)
-						{
-							gameObjects.Add(method.Invoke(null, new object[] {o}) as PreparedObject);
-						}
-						else
-						{
-							gameObjects.Add(GameObject.FromJsonObject(o));
-						}
+						gameObjects.Add(CreateObject(name, o));
 					}
 					else
 					{
-						o.Add(new JsonStringValue("type","Terrain"));
+						o.Add(new JsonStringValue("type", "Terrain"));
 						gameObjects.Add(GameObject.FromJsonObject(o));
 					}
 				}
@@ -122,33 +121,59 @@ namespace Digger.Architecture
 				throw new ArgumentException();
 			}
 
-			var map = new GameObject[height,width];
-			
+			var map = new GameObject[height, width];
+
 			if (walls)
 			{
 				for (var i = 0; i < width; i++)
 				{
-					map[0,i] = new Wall();
-					map[height-1,i] = new Wall();
+					map[0, i] = new Wall();
+					map[height - 1, i] = new Wall();
 				}
+
 				for (var i = 0; i < height; i++)
 				{
-					map[i,0] = new Wall();
-					map[i,width-1] = new Wall();
+					map[i, 0] = new Wall();
+					map[i, width - 1] = new Wall();
 				}
 			}
 
-			for (int i = 0; i < chunks.Count; i++)
-			{
-				var chunk = chunks[i];
-				map = chunk.Print(map);
-			}
 			foreach (var prepObj in gameObjects)
 			{
-				map[prepObj._x, prepObj._y] = prepObj._obj;
+				if (prepObj is PreparedObject p)
+					map[p._x, p._y] = p._obj;
+				if (prepObj is Chunk c)
+					map = c.Print(map);
 			}
 
 			return map;
+		}
+
+		public static PreparedObject CreateObject(string _type, JsonObjectCollection _collection)
+		{
+			var type = Assembly
+				.GetExecutingAssembly()
+				.GetTypes()
+				.FirstOrDefault(z => z.Name == _type);
+
+			if (type == null)
+			{
+				throw new Exception($"Can't find type '{_type}'");
+			}
+			var method = type.GetMethods().FirstOrDefault(m => m.Name == "FromJsonObject");
+			while (method == null && type.BaseType != null)
+			{	
+				method = type.BaseType.GetMethods().FirstOrDefault(m => m.Name == "FromJsonObject");
+				type = type.BaseType;
+			}
+			if (method != null)
+			{
+				return (PreparedObject) method.Invoke(null, new object[] {_collection});
+			}
+			else
+			{
+				return GameObject.FromJsonObject(_collection);
+			}
 		}
 	}
 }

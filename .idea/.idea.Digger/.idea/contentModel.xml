@@ -6,6 +6,7 @@
     <e p="$PROJECT_DIR$" t="IncludeRecursive">
       <e p="App.config" t="Include" />
       <e p="Architecture" t="Include">
+        <e p="Box.cs" t="Include" />
         <e p="Chunk.cs" t="Include" />
         <e p="CreatureAnimation.cs" t="Include" />
         <e p="CreatureCommand.cs" t="Include" />
@@ -20,8 +21,10 @@
         <e p="JSONMapCreator.cs" t="Include" />
         <e p="PreparedObject.cs" t="Include" />
         <e p="Program.cs" t="Include" />
+        <e p="Rectangle.cs" t="Include" />
         <e p="RespawnSystem.cs" t="Include" />
         <e p="SpawnRequest.cs" t="Include" />
+        <e p="Throwable.cs" t="Include" />
       </e>
       <e p="Digger.csproj" t="IncludeRecursive" />
       <e p="Game.cs" t="Include" />

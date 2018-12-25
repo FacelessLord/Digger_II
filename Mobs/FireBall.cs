@@ -4,10 +4,8 @@ using Digger.Architecture;
 
 namespace Digger.Mobs
 {
-	public class FireBall : GameObject,IFieryObject
+	public class FireBall : Throwable,IFieryObject
 	{
-		public Vector _direction;
-		private int _dirIndex;
 
 		public int DirIndex
 		{
@@ -19,44 +17,33 @@ namespace Digger.Mobs
 			}
 		}
 
+		public override CreatureCommand Update(int x, int y)
+		{
+			var command =  base.Update(x, y);
+
+			if (command._deltaX == 0 && command._deltaY == 0)
+			{
+				var request = new SpawnRequest(null, x, y, true);
+				Game.RequestSpawn(request);
+			}
+
+			return command;
+		}
+
 		public FireBall()
 		{
 			_direction = new Vector(-1,0);
 		}
-		public FireBall(Direction direction)
+		public FireBall(Direction direction):base(direction)
 		{
 			_dirIndex =(int) direction;
 			_direction = DirectionHelper.GetVec(direction);
 		}
 		
-		public FireBall(int direction)
+		public FireBall(int direction):base(direction)
 		{
 			_dirIndex = direction;
 			_direction = DirectionHelper.GetVec(direction);
-		}
-		
-		public override CreatureCommand Update(int x, int y)
-		{
-			int dx = (int) _direction.X;
-			int dy = (int) _direction.Y;
-			try
-			{
-				if (Game._map[x + dx, y + dy] == null ||
-				    !Game._map[x + dx, y + dy].IsSolidObject() || Game._map[x + dx, y + dy].IsFlammable(this))
-				{
-					CreatureCommand cc = new CreatureCommand(dx, dy, this);
-					return cc;
-				}
-			}
-			catch
-			{
-				// ignored
-			}
-
-			var request = new SpawnRequest(null, x, y, true);
-			Game.RequestSpawn(request);
-
-			return new CreatureCommand(0, 0, new FireBlock());
 		}
 
 		public override string GetImageFileName()

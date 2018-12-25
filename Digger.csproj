@@ -53,6 +53,7 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Architecture\Box.cs" />
     <Compile Include="Architecture\Chunk.cs" />
     <Compile Include="Architecture\CreatureCommand.cs" />
     <Compile Include="Architecture\Direction.cs" />
@@ -63,8 +64,10 @@
     <Compile Include="Architecture\IMovable.cs" />
     <Compile Include="Architecture\JSONMapCreator.cs" />
     <Compile Include="Architecture\PreparedObject.cs" />
+    <Compile Include="Architecture\Rectangle.cs" />
     <Compile Include="Architecture\RespawnSystem.cs" />
     <Compile Include="Architecture\SpawnRequest.cs" />
+    <Compile Include="Architecture\Throwable.cs" />
     <Compile Include="Game.cs" />
     <Compile Include="Architecture\ILiving.cs" />
     <Compile Include="Architecture\CreatureAnimation.cs" />
