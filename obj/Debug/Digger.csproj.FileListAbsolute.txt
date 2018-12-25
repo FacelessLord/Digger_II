@@ -143,3 +143,4 @@ C:/Users/w1jtoo/Documents/GitHub/Digger_II/obj/Debug/Digger.csproj.GenerateResou
 /home/lord_faceless/RiderProjects/Digger_II/obj/Debug/11-digger.pdb
 /home/lord_faceless/RiderProjects/Digger_II/bin/Debug/Images/Overlay.png
 /home/lord_faceless/RiderProjects/Digger_II/bin/Debug/Images/OldMetalScrap.png
+/home/lord_faceless/RiderProjects/Digger_II/bin/Debug/DiggerLib.dll

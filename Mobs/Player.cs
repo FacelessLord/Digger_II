@@ -30,6 +30,7 @@ namespace Digger.Mobs
 			{
 				Game._player = this;
 			}
+
 			var moving = new CreatureCommand(0, 0);
 
 			switch (_keyPressed)
@@ -51,7 +52,7 @@ namespace Digger.Mobs
 						moving._deltaX--; //движение и последующая проверка
 					break;
 			}
-			
+
 
 			if (x + moving._deltaX >= MapWidth || x + moving._deltaX < 0)
 				moving._deltaX = 0;
@@ -98,6 +99,7 @@ namespace Digger.Mobs
 
 		public void OnKeyPressed(KeyEventArgs e)
 		{
+
 			Game._shift = e.Shift;
 			Game._alt = e.Alt;
 			if (e.Shift)

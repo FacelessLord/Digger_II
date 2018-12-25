@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Threading;
 using System.Windows.Forms;
 using Digger.Architecture;
 using Digger.Mobs;
+using Timer = System.Windows.Forms.Timer;
 
 namespace Digger
 {
@@ -16,6 +18,15 @@ namespace Digger
         public readonly HashSet<Keys> _pressedKeys = new HashSet<Keys>();
         private int _tickCount;
 
+        public int dx = 0;
+        public int dy = 0;
+        public float ddx = 0;
+        public float ddy = 0;
+
+        public int _maxWindowWidth = 20;
+        public int _maxWindowHeight = 20;
+
+
 
         public DiggerWindow(DirectoryInfo imagesDirectory = null)
         {
@@ -23,8 +34,8 @@ namespace Digger
             Game._state = _gameState;
             Game._window = this;
             ClientSize = new Size(
-                GameState.ElementSize * Game.MapWidth,
-                GameState.ElementSize * Game.MapHeight + GameState.ElementSize);
+                GameState.ElementSize * Math.Min(Game.MapWidth, _maxWindowWidth),
+                GameState.ElementSize * Math.Min(Game.MapHeight, _maxWindowHeight) + GameState.ElementSize);
             FormBorderStyle = FormBorderStyle.FixedDialog;
             if (imagesDirectory == null)
                 imagesDirectory = new DirectoryInfo("Images");
@@ -64,7 +75,10 @@ namespace Digger
         {
             _pressedKeys.Add(e.KeyCode);
             Game._keyPressed = e.KeyCode;
-            Game._player.OnKeyPressed(e);
+            if (!Game._isOver && Game._player != null)
+            {
+                Game._player.OnKeyPressed(e);
+            }
         }
 
         protected override void OnKeyUp(KeyEventArgs e)
@@ -75,15 +89,28 @@ namespace Digger
 
         protected override void OnPaint(PaintEventArgs e)
         {
-            e.Graphics.TranslateTransform(0, GameState.ElementSize);
+            //Console.Out.WriteLine($"tick {_tickCount} ddx {ddx}");
+            int size = GameState.ElementSize;
+            e.Graphics.TranslateTransform(0, size);
+            e.Graphics.TranslateTransform(-dx * size, -dy * size);
             e.Graphics.FillRectangle(
                 Brushes.Black, 0, 0, GameState.ElementSize * Game.MapWidth,
                 GameState.ElementSize * Game.MapHeight);
+            if (_tickCount == 0)
+            {
+                dx = Math.Min(Game._locX - 10, Game.MapWidth - _maxWindowWidth);
+                dx = dx < 0 ? 0 : dx;
+                dy = Math.Min(Game._locY - 10, Game.MapHeight - _maxWindowHeight);
+                dy = dy < 0 ? 0 : dy;
+            }
             foreach (var a in _gameState._animations)
+            {
                 if (a._creature.GetImageFileName() != null)
                 {
                     e.Graphics.DrawImage(_bitmaps[a._creature.GetImageFileName()], a._location);
                 }
+            }
+
 
             e.Graphics.ResetTransform();
             e.Graphics.DrawString("Score " + Game._scores.ToString(), new Font("Arial", 16), Brushes.Blue, 0, 0);

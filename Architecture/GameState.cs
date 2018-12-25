@@ -66,9 +66,9 @@ namespace Digger
 
             if (Game._isOver)
             {
-                var respResult = MessageBox.Show(Game._window, "Do you wish to respawn?",
-                    "Respawn", MessageBoxButtons.OK);
-                if (respResult == DialogResult.OK)
+//                var respResult = MessageBox.Show(Game._window, "Do you wish to respawn?",
+//                    "Respawn", MessageBoxButtons.OK);
+//                if (respResult == DialogResult.OK)
                 {
                     RespawnSystem.CallRespawn();
                 }
