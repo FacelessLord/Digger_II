@@ -1,4 +1,5 @@
 using System.Windows.Forms;
+using Digger.Map;
 
 namespace Digger.Architecture
 {
@@ -22,8 +23,8 @@ namespace Digger.Architecture
 			Game._time = 0;
 			Game._player = null;
 			Game._window._pressedKeys.Clear();
-			Game._window.dx = 0;
-			Game._window.dy = 0;
+			Game._window._dx = 0;
+			Game._window._dy = 0;
 			Game._gameTime = $"{Game._time / 3600:d2}:{(Game._time / 60) % 60:d2}:{Game._time % 60:d2}";
 			Game._keyPressed = Keys.None;
 			Game._window._pressedKeys.Clear();

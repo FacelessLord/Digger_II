@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
-using System.Windows.Forms;
-using Digger.Architecture;
+using Digger.Objects;
+using Digger.Objects.Api;
 
-namespace Digger
+namespace Digger.Architecture
 {
     public class GameState
     {
@@ -13,6 +13,7 @@ namespace Digger
         public List<CreatureAnimation> _animations = new List<CreatureAnimation>();
 
         public List<SpawnRequest> _spawnRequests = new List<SpawnRequest>();
+        public Dictionary<GameObject,CreatureCommand> _moveRequests = new Dictionary<GameObject,CreatureCommand>();
 
         public bool _respawning = false;
         
@@ -25,6 +26,10 @@ namespace Digger
                 var creature = Game._map[x, y];
                 if (creature == null) continue;
                 var command = creature.Update(x, y);
+                if (_moveRequests.ContainsKey(creature))
+                {
+                    command = _moveRequests[creature];
+                }
 
                 if (y + command._deltaY < 0 || y + command._deltaY >= Game.MapHeight)
                 {
@@ -46,7 +51,7 @@ namespace Digger
                         _targetLogicalLocation = new Point(x + command._deltaX, y + command._deltaY)
                     });
             }
-
+            _moveRequests.Clear();
             _animations = _animations.OrderByDescending(z => z._creature.GetDrawingPriority()).ToList();
         }
 
@@ -90,7 +95,7 @@ namespace Digger
                     var vec = request._searchMethod(tx,ty);
                     tx =(int) vec.X;
                     ty = (int) vec.Y;
-                    if (Game._map[tx, ty] == null || request._forceSpawn)
+                    if (Game._map[tx, ty] == null || request._forceSpawn || Game._map[tx, ty].CanBeReplacedBy(request._obj))
                     {
                         Game._map[tx, ty] = request._obj;
                     }

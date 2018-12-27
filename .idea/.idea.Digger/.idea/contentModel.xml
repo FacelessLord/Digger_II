@@ -6,22 +6,12 @@
     <e p="$PROJECT_DIR$" t="IncludeRecursive">
       <e p="App.config" t="Include" />
       <e p="Architecture" t="Include">
-        <e p="Box.cs" t="Include" />
-        <e p="Chunk.cs" t="Include" />
         <e p="CreatureAnimation.cs" t="Include" />
         <e p="CreatureCommand.cs" t="Include" />
-        <e p="CreatureMapCreator.cs" t="Include" />
         <e p="DiggerWindow.cs" t="Include" />
         <e p="Direction.cs" t="Include" />
-        <e p="GameObject.cs" t="Include" />
         <e p="GameState.cs" t="Include" />
-        <e p="IFieryObject.cs" t="Include" />
-        <e p="ILiving.cs" t="Include" />
-        <e p="IMovable.cs" t="Include" />
-        <e p="JSONMapCreator.cs" t="Include" />
-        <e p="PreparedObject.cs" t="Include" />
         <e p="Program.cs" t="Include" />
-        <e p="Rectangle.cs" t="Include" />
         <e p="RespawnSystem.cs" t="Include" />
         <e p="SpawnRequest.cs" t="Include" />
         <e p="Throwable.cs" t="Include" />
@@ -43,6 +33,7 @@
         <e p="Fireblock.png" t="Include" />
         <e p="Gold.png" t="Include" />
         <e p="Key.png" t="Include" />
+        <e p="MetalBox.png" t="Include" />
         <e p="Monster.png" t="Include" />
         <e p="Murloc.png" t="Include" />
         <e p="OldDigger.png" t="Include" />
@@ -59,11 +50,25 @@
         <e p="Woods.png" t="Include" />
         <e p="tenor.gif" t="Include" />
       </e>
+      <e p="Map" t="Include">
+        <e p="Box.cs" t="Include" />
+        <e p="Chunk.cs" t="Include" />
+        <e p="CreatureMapCreator.cs" t="Include" />
+        <e p="JSONMapCreator.cs" t="Include" />
+        <e p="PreparedObject.cs" t="Include" />
+        <e p="Rectangle.cs" t="Include" />
+      </e>
       <e p="Maps" t="Include">
         <e p="map.json" t="Include" />
       </e>
-      <e p="Mobs" t="Include">
+      <e p="Objects" t="Include">
         <e p="Air.cs" t="Include" />
+        <e p="Api" t="Include">
+          <e p="GameObject.cs" t="Include" />
+          <e p="IFieryObject.cs" t="Include" />
+          <e p="ILiving.cs" t="Include" />
+          <e p="MovableObject.cs" t="Include" />
+        </e>
         <e p="BluePortal.cs" t="Include" />
         <e p="Boss.cs" t="Include" />
         <e p="Door.cs" t="Include" />
@@ -72,6 +77,7 @@
         <e p="FireBlock.cs" t="Include" />
         <e p="Gold.cs" t="Include" />
         <e p="Key.cs" t="Include" />
+        <e p="MetalBox.cs" t="Include" />
         <e p="Monster.cs" t="Include" />
         <e p="MonsterPortal.cs" t="Include" />
         <e p="Player.cs" t="Include" />

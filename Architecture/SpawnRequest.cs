@@ -1,4 +1,5 @@
 using System.Windows;
+using Digger.Objects.Api;
 
 namespace Digger.Architecture
 {

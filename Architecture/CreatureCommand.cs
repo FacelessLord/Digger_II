@@ -1,6 +1,6 @@
-﻿using Digger.Architecture;
+﻿using Digger.Objects.Api;
 
-namespace Digger
+namespace Digger.Architecture
 {
     public class CreatureCommand
     {

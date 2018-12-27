@@ -1,7 +1,8 @@
 {
-  "width":30,
-  "height":30,
+  "width":21,
+  "height":21,
   "walls":true,
+  
   "player":{"type":"Player","x":4,"y":10},
   "turret_ul":{"type":"Turret","x":1,"y":1,"direction":1,"frequency":1},
   "turret_ur":{"type":"Turret","x":19,"y":1,"direction":2,"frequency":1},
@@ -18,12 +19,11 @@
   "box": {"x": 7,"y": 7,"width": 7,"height": 7, "type": "Wall"},
   "rect": {"x": 8,"y": 8,"width": 5,"height": 5, "type": "Gold"},
   "mportal":{"type":"MonsterPortal","x":10,"y":10},
-
   
-  "wd": {"type": "Woods","x": 5,"y": 10},
-  "wd": {"type": "Woods","x": 15,"y": 10},
-  "wd": {"type": "Woods","x": 10,"y": 15},
-  "wd": {"type": "Woods","x": 10,"y": 5},
+  "wd": {"type": "MetalBox","x": 5,"y": 10},
+  "wd": {"type": "MetalBox","x": 15,"y": 10},
+  "wd": {"type": "MetalBox","x": 10,"y": 15},
+  "wd": {"type": "MetalBox","x": 10,"y": 5},
   
   "d": {"type": "Door","x": 7,"y": 10},
   "d": {"type": "Door","x": 13,"y": 10},
@@ -32,5 +32,10 @@
   "k": {"type": "Key","x": 6,"y":10},
   "k": {"type": "Key","x": 14,"y":10},
   "k": {"type": "Key","x": 10,"y":6},
-  "k": {"type": "Key","x": 10,"y":14}
+  "k": {"type": "Key","x": 10,"y":14},
+
+  "p": {"type": "BluePortal","x": 6,"y":6, "toRX":-3, "toRY": -3 },
+  "p": {"type": "BluePortal","x": 14,"y":14, "toRX":3, "toRY": 3 },
+  "p": {"type": "BluePortal","x": 14,"y":6, "toRX":3, "toRY": -3 },
+  "p": {"type": "BluePortal","x": 6,"y":14, "toRX":-3, "toRY": 3 }
 } 

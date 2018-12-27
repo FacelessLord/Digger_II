@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 
-namespace Digger
+namespace Digger.Architecture
 {
     internal static class Program
     {

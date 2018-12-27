@@ -1,6 +1,8 @@
+using System;
 using System.Net.Json;
 using System.Windows;
-using Digger.Mobs;
+using Digger.Map;
+using Digger.Objects.Api;
 
 namespace Digger.Architecture
 {
@@ -34,7 +36,8 @@ namespace Digger.Architecture
         
         protected Vector _direction;
         protected int _dirIndex;
-        
+
+
         public override CreatureCommand Update(int x, int y)
         {
             int dx = (int) _direction.X;
@@ -53,7 +56,14 @@ namespace Digger.Architecture
                 // ignored
             }
 
+            OnStopped(x, y);
+
             return new CreatureCommand(0, 0, this);
+        }
+
+        public virtual void OnStopped(int x,int y)
+        {
+            Game.RequestSpawn(null,x,y,true);
         }
         
         public new static PreparedObject FromJsonObject(JsonObjectCollection jsonObject)
